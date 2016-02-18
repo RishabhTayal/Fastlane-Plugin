@@ -121,7 +121,6 @@
 				692C864B1C761FDC00012B4B /* Sources */,
 				692C864C1C761FDC00012B4B /* Resources */,
 				692C864D1C761FDC00012B4B /* Frameworks */,
-				A3F657BA34867061EE54C8EB /* Find unused imports */,
 			);
 			buildRules = (
 			);
@@ -173,23 +172,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		A3F657BA34867061EE54C8EB /* Find unused imports */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Find unused imports";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"/Users/rtayal/Library/Application Support/Developer/Shared/Xcode/Plug-ins/xcfui.xcplugin/Contents/Resources/fui_script.sh\" \"/Users/rtayal/Desktop/Personal/Fastlane-Plugin\"";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		692C864B1C761FDC00012B4B /* Sources */ = {
