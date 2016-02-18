@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6906879D1C76216C00BB9D9B /* CCPRunOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6906879A1C76216C00BB9D9B /* CCPRunOperation.m */; };
-		6906879E1C76216C00BB9D9B /* CCPShellRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6906879C1C76216C00BB9D9B /* CCPShellRunner.m */; };
-		690687A11C76217E00BB9D9B /* CCPXCodeConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 690687A01C76217E00BB9D9B /* CCPXCodeConsole.m */; };
-		690687A41C76220A00BB9D9B /* CCPWorkspaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 690687A31C76220A00BB9D9B /* CCPWorkspaceManager.m */; };
-		690687A71C762AFB00BB9D9B /* CCPProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 690687A61C762AFB00BB9D9B /* CCPProject.m */; };
+		691AB4621C767CE9001D45F6 /* CCPProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 691AB4591C767CE9001D45F6 /* CCPProject.m */; };
+		691AB4631C767CE9001D45F6 /* CCPRunOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 691AB45B1C767CE9001D45F6 /* CCPRunOperation.m */; };
+		691AB4641C767CE9001D45F6 /* CCPShellRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 691AB45D1C767CE9001D45F6 /* CCPShellRunner.m */; };
+		691AB4651C767CE9001D45F6 /* CCPWorkspaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 691AB45F1C767CE9001D45F6 /* CCPWorkspaceManager.m */; };
+		691AB4661C767CE9001D45F6 /* CCPXCodeConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 691AB4611C767CE9001D45F6 /* CCPXCodeConsole.m */; };
 		692C86531C761FDC00012B4B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692C86521C761FDC00012B4B /* AppKit.framework */; };
 		692C86551C761FDC00012B4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692C86541C761FDC00012B4B /* Foundation.framework */; };
 		692C86591C761FDC00012B4B /* Fastlane.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 692C86581C761FDC00012B4B /* Fastlane.xcscheme */; };
@@ -20,16 +20,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		690687991C76216C00BB9D9B /* CCPRunOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPRunOperation.h; sourceTree = "<group>"; };
-		6906879A1C76216C00BB9D9B /* CCPRunOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPRunOperation.m; sourceTree = "<group>"; };
-		6906879B1C76216C00BB9D9B /* CCPShellRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPShellRunner.h; sourceTree = "<group>"; };
-		6906879C1C76216C00BB9D9B /* CCPShellRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPShellRunner.m; sourceTree = "<group>"; };
-		6906879F1C76217E00BB9D9B /* CCPXCodeConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPXCodeConsole.h; sourceTree = "<group>"; };
-		690687A01C76217E00BB9D9B /* CCPXCodeConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPXCodeConsole.m; sourceTree = "<group>"; };
-		690687A21C76220A00BB9D9B /* CCPWorkspaceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPWorkspaceManager.h; sourceTree = "<group>"; };
-		690687A31C76220A00BB9D9B /* CCPWorkspaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPWorkspaceManager.m; sourceTree = "<group>"; };
-		690687A51C762AFB00BB9D9B /* CCPProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPProject.h; sourceTree = "<group>"; };
-		690687A61C762AFB00BB9D9B /* CCPProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPProject.m; sourceTree = "<group>"; };
+		691AB4581C767CE9001D45F6 /* CCPProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPProject.h; sourceTree = "<group>"; };
+		691AB4591C767CE9001D45F6 /* CCPProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPProject.m; sourceTree = "<group>"; };
+		691AB45A1C767CE9001D45F6 /* CCPRunOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPRunOperation.h; sourceTree = "<group>"; };
+		691AB45B1C767CE9001D45F6 /* CCPRunOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPRunOperation.m; sourceTree = "<group>"; };
+		691AB45C1C767CE9001D45F6 /* CCPShellRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPShellRunner.h; sourceTree = "<group>"; };
+		691AB45D1C767CE9001D45F6 /* CCPShellRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPShellRunner.m; sourceTree = "<group>"; };
+		691AB45E1C767CE9001D45F6 /* CCPWorkspaceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPWorkspaceManager.h; sourceTree = "<group>"; };
+		691AB45F1C767CE9001D45F6 /* CCPWorkspaceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPWorkspaceManager.m; sourceTree = "<group>"; };
+		691AB4601C767CE9001D45F6 /* CCPXCodeConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPXCodeConsole.h; sourceTree = "<group>"; };
+		691AB4611C767CE9001D45F6 /* CCPXCodeConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPXCodeConsole.m; sourceTree = "<group>"; };
 		692C864F1C761FDC00012B4B /* Fastlane.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Fastlane.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		692C86521C761FDC00012B4B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		692C86541C761FDC00012B4B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -54,6 +54,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		691AB4571C767CE9001D45F6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				691AB4581C767CE9001D45F6 /* CCPProject.h */,
+				691AB4591C767CE9001D45F6 /* CCPProject.m */,
+				691AB45A1C767CE9001D45F6 /* CCPRunOperation.h */,
+				691AB45B1C767CE9001D45F6 /* CCPRunOperation.m */,
+				691AB45C1C767CE9001D45F6 /* CCPShellRunner.h */,
+				691AB45D1C767CE9001D45F6 /* CCPShellRunner.m */,
+				691AB45E1C767CE9001D45F6 /* CCPWorkspaceManager.h */,
+				691AB45F1C767CE9001D45F6 /* CCPWorkspaceManager.m */,
+				691AB4601C767CE9001D45F6 /* CCPXCodeConsole.h */,
+				691AB4611C767CE9001D45F6 /* CCPXCodeConsole.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		692C86461C761FDC00012B4B = {
 			isa = PBXGroup;
 			children = (
@@ -83,16 +100,7 @@
 		692C86561C761FDC00012B4B /* Fastlane */ = {
 			isa = PBXGroup;
 			children = (
-				690687A51C762AFB00BB9D9B /* CCPProject.h */,
-				690687A61C762AFB00BB9D9B /* CCPProject.m */,
-				690687A21C76220A00BB9D9B /* CCPWorkspaceManager.h */,
-				690687A31C76220A00BB9D9B /* CCPWorkspaceManager.m */,
-				6906879F1C76217E00BB9D9B /* CCPXCodeConsole.h */,
-				690687A01C76217E00BB9D9B /* CCPXCodeConsole.m */,
-				690687991C76216C00BB9D9B /* CCPRunOperation.h */,
-				6906879A1C76216C00BB9D9B /* CCPRunOperation.m */,
-				6906879B1C76216C00BB9D9B /* CCPShellRunner.h */,
-				6906879C1C76216C00BB9D9B /* CCPShellRunner.m */,
+				691AB4571C767CE9001D45F6 /* Helpers */,
 				692C865A1C761FDC00012B4B /* Fastlane.h */,
 				692C865B1C761FDC00012B4B /* Fastlane.m */,
 				692C865D1C761FDC00012B4B /* NSObject_Extension.h */,
@@ -178,13 +186,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				690687A41C76220A00BB9D9B /* CCPWorkspaceManager.m in Sources */,
+				691AB4651C767CE9001D45F6 /* CCPWorkspaceManager.m in Sources */,
+				691AB4631C767CE9001D45F6 /* CCPRunOperation.m in Sources */,
 				692C865C1C761FDC00012B4B /* Fastlane.m in Sources */,
-				690687A71C762AFB00BB9D9B /* CCPProject.m in Sources */,
-				6906879D1C76216C00BB9D9B /* CCPRunOperation.m in Sources */,
+				691AB4661C767CE9001D45F6 /* CCPXCodeConsole.m in Sources */,
 				692C865F1C761FDC00012B4B /* NSObject_Extension.m in Sources */,
-				6906879E1C76216C00BB9D9B /* CCPShellRunner.m in Sources */,
-				690687A11C76217E00BB9D9B /* CCPXCodeConsole.m in Sources */,
+				691AB4641C767CE9001D45F6 /* CCPShellRunner.m in Sources */,
+				691AB4621C767CE9001D45F6 /* CCPProject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
