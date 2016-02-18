@@ -1,4 +1,12 @@
-# Fastlane-Plugin
+# Fastlane-Plugin for Xcode
 
-Author
+##Features
+
+##Install
+
+##Uninstall
+
+##Author
 Rishabh Tayal: rtayal11@gmail.com
+
+###Thanks: Felix Krause @KrauseFx
