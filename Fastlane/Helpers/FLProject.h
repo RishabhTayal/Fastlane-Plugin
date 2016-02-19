@@ -23,11 +23,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CCPProject : NSObject
+@interface FLProject : NSObject
 
 @property (nonatomic, copy, readonly) NSString* directoryPath;
 //@property (nonatomic, copy, readonly) NSString* podspecPath;
 @property (nonatomic, copy, readonly) NSString* fastfilePath;
+//@property (nonatomic, copy, readonly) NSString* fastlanePath;
 @property (nonatomic, copy, readonly) NSString* projectName;
 @property (nonatomic, copy, readonly) NSDictionary* infoDictionary;
 @property (nonatomic, readonly) NSString* workspacePath;
@@ -42,5 +43,7 @@
 //- (BOOL)hasPodspecFile;
 
 - (BOOL)containsFileWithName:(NSString*)fileName;
+
+-(NSString*)fastlanePath;
 
 @end

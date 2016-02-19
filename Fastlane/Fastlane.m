@@ -7,13 +7,16 @@
 //
 
 #import "Fastlane.h"
-#import "CCPShellRunner.h"
-#import "CCPWorkspaceManager.h"
-#import "CCPProject.h"
+#import "FLShellRunner.h"
+#import "FLWorkspaceManager.h"
+#import "FLProject.h"
 
 @interface Fastlane()
 
 @property (nonatomic, strong, readwrite) NSBundle *bundle;
+@property (nonatomic, strong) NSMenuItem* fastlaneMenuItem;
+@property (nonatomic, strong) NSMenuItem* addEditFastlaneMenuItem;
+
 @end
 
 @implementation Fastlane
@@ -38,54 +41,79 @@
     //removeObserver
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationDidFinishLaunchingNotification object:nil];
     
+    //    [self setFastlanePath];
+    
     // Create menu items, initialize UI, etc.
     NSMenuItem *topMenuItem = [[NSApp mainMenu] itemWithTitle:@"Product"];
     if (topMenuItem) {
         [[topMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-        NSMenuItem *fastlaneMenuItem = [[NSMenuItem alloc] initWithTitle:@"Fastlane" action:nil keyEquivalent:@""];
-        [fastlaneMenuItem setTarget:self];
-        fastlaneMenuItem.submenu = [[NSMenu alloc] initWithTitle:@"Fastlane"];
+        _fastlaneMenuItem = [[NSMenuItem alloc] initWithTitle:@"Fastlane" action:nil keyEquivalent:@""];
+        [_fastlaneMenuItem setTarget:self];
+        _fastlaneMenuItem.submenu = [[NSMenu alloc] initWithTitle:@"Fastlane"];
         
-        NSMenuItem* addLaneMenuItem = [[NSMenuItem alloc] initWithTitle:@"Add/Edit Fastfile" action:@selector(editFastfile) keyEquivalent:@""];
-        [addLaneMenuItem setTarget:self];
-        [fastlaneMenuItem.submenu addItem:addLaneMenuItem];
+        self.addEditFastlaneMenuItem = [[NSMenuItem alloc] initWithTitle:@"Add/Edit Fastfile" action:@selector(editFastfile) keyEquivalent:@""];
+        [self.addEditFastlaneMenuItem setTarget:self];
+        [_fastlaneMenuItem.submenu addItem:self.addEditFastlaneMenuItem];
         
         NSMenuItem* runFastlane = [[NSMenuItem alloc] initWithTitle:@"Run Fastlane 🚀" action:@selector(runFastlane) keyEquivalent:@""];
         runFastlane.target = self;
-        [fastlaneMenuItem.submenu addItem:runFastlane];
+        //        runFastlane.submenu = [[NSMenu alloc] initWithTitle:@"Run Fastlane 🚀"];
         
-        [topMenuItem.submenu insertItem:fastlaneMenuItem atIndex:[topMenuItem.submenu indexOfItemWithTitle:@"Build For"]];
+        [self addLanesOptionToMenu:runFastlane];
+        
+        [_fastlaneMenuItem.submenu addItem:runFastlane];
+        
+        [topMenuItem.submenu insertItem:_fastlaneMenuItem atIndex:[topMenuItem.submenu indexOfItemWithTitle:@"Build For"]];
     }
+    
 }
 
 -(void)editFastfile {
     NSLog(@"add lane");
-    CCPProject* project = [CCPProject projectForKeyWindow];
+    FLProject* project = [FLProject projectForKeyWindow];
     NSString* fastfilePath = project.fastfilePath;
     
     if (![project hasFastfile]) {
         NSError* error = nil;
-        [[NSFileManager defaultManager] copyItemAtPath:[self.bundle pathForResource:@"DefaultPodfile" ofType:@""] toPath:fastfilePath error:&error];
-        if (error) {
-            [[NSAlert alertWithError:error] runModal];
-        }
+        //        [[NSFileManager defaultManager] copyItemAtPath:[self.bundle pathForResource:@"DefaultPodfile" ofType:@""] toPath:fastfilePath error:&error];
+        //        if (error) {
+        //            [[NSAlert alertWithError:error] runModal];
+        //        }
     }
     
     [[[NSApplication sharedApplication] delegate] application:[NSApplication sharedApplication]
                                                      openFile:fastfilePath];
 }
 
+//-(BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+//    NSLog(@"validating");
+//    if ([menuItem isEqual:self.addEditFastlaneMenuItem]) {
+//        NSLog(@"%@", [FLWorkspaceManager currentWorkspaceDirectoryPath]);
+//        FLProject* project = [[FLProject alloc] init];
+//        [FLShellRunner runShellCommand:[project fastlanePath] withArgs:@[@"lanes"] directory:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSTask *t) {
+//            NSLog(@"%@", [t standardOutput]);
+//            NSPipe* outPipe = t.standardOutput;
+//            NSFileHandle* read = [outPipe fileHandleForReading];
+//            NSData* dataRead = read.readDataToEndOfFile;
+//            NSLog(@"%@", [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding]);
+//        }];
+//    }
+//    return true;
+//}
+
+-(void)addLanesOptionToMenu:(NSMenuItem*)menu {
+    //    NSLog(@"lanes: %@", [FLProject projectForKeyWindow].fastlanePath);
+    FLProject* project = [[FLProject alloc] init];
+    NSLog(@"path: %@", [FLWorkspaceManager currentWorkspaceDirectoryPath]);
+    //    [FLShellRunner runShellCommand:[project fastlanePath] withArgs:@[@"lanes"] directory:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSTask *t) {
+    //        NSLog(@"%@", t.standardOutput);
+    //    }];
+}
+
 - (void)runFastlane {
-    //TODO: Use the paths array and check at which path `fastlane` is installed.
-    NSArray* fastlanePaths = @[@"/usr/bin/fastlane", @"/usr/local/bin/fastlane"];
-    for (NSString* path in fastlanePaths) {
-        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-            [CCPShellRunner runShellCommand: path withArgs:@[@"deploy"] directory:[CCPWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSTask *t) {
-                NSLog(@"%@", t);
-            }];
-            return;
-        }
-    }
+    [FLShellRunner runShellCommand: [[FLProject projectForKeyWindow] fastlanePath] withArgs:@[@"deploy"] directory:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSTask *t) {
+        NSLog(@"%@", t);
+    }];
 }
 
 - (void)dealloc {

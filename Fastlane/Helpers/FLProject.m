@@ -23,21 +23,21 @@
 
 #import <objc/runtime.h>
 
-#import "CCPProject.h"
-#import "CCPWorkspaceManager.h"
+#import "FLProject.h"
+#import "FLWorkspaceManager.h"
 
-@implementation CCPProject
+@implementation FLProject
 
 + (instancetype)projectForKeyWindow
 {
-    id workspace = [CCPWorkspaceManager workspaceForKeyWindow];
+    id workspace = [FLWorkspaceManager workspaceForKeyWindow];
     
     id contextManager = [workspace valueForKey:@"_runContextManager"];
     for (id scheme in [contextManager valueForKey:@"runContexts"]) {
         NSString* schemeName = [scheme valueForKey:@"name"];
         if (![schemeName hasPrefix:@"Pods-"]) {
-            NSString* path = [CCPWorkspaceManager directoryPathForWorkspace:workspace];
-            return [[CCPProject alloc] initWithName:schemeName path:path];
+            NSString* path = [FLWorkspaceManager directoryPathForWorkspace:workspace];
+            return [[FLProject alloc] initWithName:schemeName path:path];
         }
     }
     
@@ -66,6 +66,17 @@
     }
     
     return self;
+}
+
+-(NSString*)fastlanePath {
+    //TODO: Use the paths array and check at which path `fastlane` is installed.
+    NSArray* fastlanePaths = @[@"/usr/bin/fastlane", @"/usr/local/bin/fastlane"];
+    for (NSString* path in fastlanePaths) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            return path;
+        }
+    }
+    return @"";
 }
 
 - (NSString*)workspacePath

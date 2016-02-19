@@ -22,10 +22,10 @@
 //  IN THE SOFTWARE.
 
 #import <AppKit/AppKit.h>
-#import "CCPWorkspaceManager.h"
-#import "CCPProject.h"
+#import "FLWorkspaceManager.h"
+#import "FLProject.h"
 
-@implementation CCPWorkspaceManager
+@implementation FLWorkspaceManager
 
 static NSString* const PODFILE = @"Podfile";
 

@@ -21,16 +21,16 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 //  IN THE SOFTWARE.
 
-#import "CCPXCodeConsole.h"
+#import "FLXCodeConsole.h"
 
-@interface CCPXCodeConsole ()
+@interface FLXCodeConsole ()
 
 @property (retain, nonatomic) NSTextView* console;
 @property (strong, nonatomic) NSString* windowIdentifier;
 
 @end
 
-@implementation CCPXCodeConsole
+@implementation FLXCodeConsole
 
 static NSMutableDictionary* sharedInstances;
 
@@ -39,7 +39,7 @@ static NSMutableDictionary* sharedInstances;
     if (self = [super init]) {
         _windowIdentifier = identifier;
     }
-
+    
     return self;
 }
 
@@ -81,10 +81,10 @@ static NSMutableDictionary* sharedInstances;
 {
     if (text.length == 0)
         return;
-
+    
     if (!color)
         color = self.console.textColor;
-
+    
     NSMutableDictionary* attributes = [@{ NSForegroundColorAttributeName : color } mutableCopy];
     NSFont* font = [NSFont fontWithName:@"Menlo Regular" size:11];
     if (font) {
@@ -113,17 +113,17 @@ static NSMutableDictionary* sharedInstances;
 {
     if (window == nil)
         return nil;
-
+    
     NSString* key = [window description];
-
+    
     if (!sharedInstances)
         sharedInstances = [[NSMutableDictionary alloc] init];
-
+    
     if (!sharedInstances[key]) {
-        CCPXCodeConsole* console = [[CCPXCodeConsole alloc] initWithIdentifier:key];
+        FLXCodeConsole* console = [[FLXCodeConsole alloc] initWithIdentifier:key];
         [sharedInstances setObject:console forKey:key];
     }
-
+    
     return sharedInstances[key];
 }
 
@@ -141,7 +141,7 @@ static NSMutableDictionary* sharedInstances;
     if ([view isKindOfClass:kind]) {
         return view;
     }
-
+    
     for (NSView* v in view.subviews) {
         NSView* result = [self findViewOfKind:kind
                                        inView:v];
@@ -161,9 +161,9 @@ static NSMutableDictionary* sharedInstances;
         id editorArea = [self.window.windowController valueForKey:@"editorArea"];
         [editorArea performSelector:@selector(activateConsole:) withObject:self];
     }
-
+    
     [console.textStorage deleteCharactersInRange:NSMakeRange(0, console.textStorage.length)];
-
+    
     return console;
 }
 

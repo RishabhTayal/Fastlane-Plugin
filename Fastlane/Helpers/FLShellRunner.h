@@ -1,5 +1,5 @@
 //
-//  CCPWorkspaceManager.h
+//  CCPShellHandler.h
 //
 //  Copyright (c) 2013 Delisa Mason. http://delisa.me
 //
@@ -23,14 +23,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CCPWorkspaceManager : NSObject
+@interface FLShellRunner : NSObject
 
-+ (id)workspaceForKeyWindow;
-
-+ (NSArray*)installedPodNamesInCurrentWorkspace;
-
-+ (NSString*)currentWorkspaceDirectoryPath;
-
-+ (NSString*)directoryPathForWorkspace:(id)workspace;
++ (void)runShellCommand:(NSString*)command withArgs:(NSArray*)args directory:(NSString*)directory completion:(void (^)(NSTask* t))completion;
 
 @end
