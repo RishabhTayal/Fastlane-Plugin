@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		691AB4621C767CE9001D45F6 /* FLProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 691AB4591C767CE9001D45F6 /* FLProject.m */; };
-		691AB4631C767CE9001D45F6 /* FLRunOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 691AB45B1C767CE9001D45F6 /* FLRunOperation.m */; };
 		691AB4641C767CE9001D45F6 /* FLShellRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 691AB45D1C767CE9001D45F6 /* FLShellRunner.m */; };
 		691AB4651C767CE9001D45F6 /* FLWorkspaceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 691AB45F1C767CE9001D45F6 /* FLWorkspaceManager.m */; };
 		691AB4661C767CE9001D45F6 /* FLXCodeConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 691AB4611C767CE9001D45F6 /* FLXCodeConsole.m */; };
@@ -22,8 +21,6 @@
 /* Begin PBXFileReference section */
 		691AB4581C767CE9001D45F6 /* FLProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProject.h; sourceTree = "<group>"; };
 		691AB4591C767CE9001D45F6 /* FLProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLProject.m; sourceTree = "<group>"; };
-		691AB45A1C767CE9001D45F6 /* FLRunOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLRunOperation.h; sourceTree = "<group>"; };
-		691AB45B1C767CE9001D45F6 /* FLRunOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLRunOperation.m; sourceTree = "<group>"; };
 		691AB45C1C767CE9001D45F6 /* FLShellRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLShellRunner.h; sourceTree = "<group>"; };
 		691AB45D1C767CE9001D45F6 /* FLShellRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLShellRunner.m; sourceTree = "<group>"; };
 		691AB45E1C767CE9001D45F6 /* FLWorkspaceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLWorkspaceManager.h; sourceTree = "<group>"; };
@@ -59,8 +56,6 @@
 			children = (
 				691AB4581C767CE9001D45F6 /* FLProject.h */,
 				691AB4591C767CE9001D45F6 /* FLProject.m */,
-				691AB45A1C767CE9001D45F6 /* FLRunOperation.h */,
-				691AB45B1C767CE9001D45F6 /* FLRunOperation.m */,
 				691AB45C1C767CE9001D45F6 /* FLShellRunner.h */,
 				691AB45D1C767CE9001D45F6 /* FLShellRunner.m */,
 				691AB45E1C767CE9001D45F6 /* FLWorkspaceManager.h */,
@@ -187,7 +182,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				691AB4651C767CE9001D45F6 /* FLWorkspaceManager.m in Sources */,
-				691AB4631C767CE9001D45F6 /* FLRunOperation.m in Sources */,
 				692C865C1C761FDC00012B4B /* Fastlane.m in Sources */,
 				691AB4661C767CE9001D45F6 /* FLXCodeConsole.m in Sources */,
 				692C865F1C761FDC00012B4B /* NSObject_Extension.m in Sources */,

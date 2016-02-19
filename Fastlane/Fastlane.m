@@ -102,17 +102,20 @@
 //}
 
 -(void)addLanesOptionToMenu:(NSMenuItem*)menu {
-    //    NSLog(@"lanes: %@", [FLProject projectForKeyWindow].fastlanePath);
-    FLProject* project = [[FLProject alloc] init];
-    NSLog(@"path: %@", [FLWorkspaceManager currentWorkspaceDirectoryPath]);
     //    [FLShellRunner runShellCommand:[project fastlanePath] withArgs:@[@"lanes"] directory:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSTask *t) {
     //        NSLog(@"%@", t.standardOutput);
     //    }];
 }
 
 - (void)runFastlane {
-    [FLShellRunner runShellCommand: [[FLProject projectForKeyWindow] fastlanePath] withArgs:@[@"deploy"] directory:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSTask *t) {
-        NSLog(@"%@", t);
+    //    [FLShellRunner runShellCommand: [[FLProject projectForKeyWindow] fastlanePath] withArgs:@[@"deploy"] directory:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSTask *t) {
+    //        NSLog(@"%@", t);
+    //    }];
+    
+    FLShellRunner* shellRunner = [[FLShellRunner alloc] init];
+    //    [shellRunner runScriptPath:[[FLProject projectForKeyWindow] fastlanePath] arguments:@[@"lanes", @"--json"]];
+    [shellRunner runScriptPath:[[FLProject projectForKeyWindow] fastlanePath] arguments:@[@"lanes"] completion:^(NSData *data) {
+        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     }];
 }
 
