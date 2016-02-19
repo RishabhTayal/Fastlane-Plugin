@@ -1,5 +1,5 @@
 //
-//  CCPRunOperation.h
+//  CCPWorkspaceManager.h
 //
 //  Copyright (c) 2013 Delisa Mason. http://delisa.me
 //
@@ -23,8 +23,14 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CCPRunOperation : NSOperation
+@interface FLWorkspaceManager : NSObject
 
-- (id)initWithTask:(NSTask*)task;
++ (id)workspaceForKeyWindow;
+
++ (NSArray*)installedPodNamesInCurrentWorkspace;
+
++ (NSString*)currentWorkspaceDirectoryPath;
+
++ (NSString*)directoryPathForWorkspace:(id)workspace;
 
 @end

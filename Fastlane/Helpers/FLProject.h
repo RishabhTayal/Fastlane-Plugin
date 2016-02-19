@@ -1,5 +1,5 @@
 //
-//  CCPShellHandler.h
+//  CCPWorkspace.h
 //
 //  Copyright (c) 2013 Delisa Mason. http://delisa.me
 //
@@ -23,8 +23,27 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CCPShellRunner : NSObject
+@interface FLProject : NSObject
 
-+ (void)runShellCommand:(NSString*)command withArgs:(NSArray*)args directory:(NSString*)directory completion:(void (^)(NSTask* t))completion;
+@property (nonatomic, copy, readonly) NSString* directoryPath;
+//@property (nonatomic, copy, readonly) NSString* podspecPath;
+@property (nonatomic, copy, readonly) NSString* fastfilePath;
+//@property (nonatomic, copy, readonly) NSString* fastlanePath;
+@property (nonatomic, copy, readonly) NSString* projectName;
+@property (nonatomic, copy, readonly) NSDictionary* infoDictionary;
+@property (nonatomic, readonly) NSString* workspacePath;
+
++ (instancetype)projectForKeyWindow;
+
+- (id)initWithName:(NSString*)name path:(NSString*)path;
+
+//- (void)createPodspecFromTemplate:(NSString*)_template;
+
+- (BOOL)hasFastfile;
+//- (BOOL)hasPodspecFile;
+
+- (BOOL)containsFileWithName:(NSString*)fileName;
+
+-(NSString*)fastlanePath;
 
 @end

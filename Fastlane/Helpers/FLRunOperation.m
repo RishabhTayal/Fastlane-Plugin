@@ -21,15 +21,15 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 //  IN THE SOFTWARE.
 
-#import "CCPRunOperation.h"
-#import "CCPXCodeConsole.h"
+#import "FLRunOperation.h"
+#import "FLXCodeConsole.h"
 
-@interface CCPRunOperation () {
+@interface FLRunOperation () {
     BOOL isExecuting;
     BOOL isFinished;
 }
 
-@property (retain) CCPXCodeConsole* xcodeConsole;
+@property (retain) FLXCodeConsole* xcodeConsole;
 
 @property (retain) NSTask* task;
 @property (retain) id taskStandardOutDataAvailableObserver;
@@ -38,13 +38,13 @@
 
 @end
 
-@implementation CCPRunOperation
+@implementation FLRunOperation
 
 - (id)initWithTask:(NSTask*)task
 {
     self = [super init];
     if (self) {
-        self.xcodeConsole = [CCPXCodeConsole consoleForKeyWindow];
+        self.xcodeConsole = [FLXCodeConsole consoleForKeyWindow];
         self.task = task;
     }
     return self;

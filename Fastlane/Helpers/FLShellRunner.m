@@ -1,5 +1,5 @@
 //
-//  CCPWorkspace.h
+//  CCPShellHandler.m
 //
 //  Copyright (c) 2013 Delisa Mason. http://delisa.me
 //
@@ -21,26 +21,36 @@
 //  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 //  IN THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
+#import "FLShellRunner.h"
+#import "FLRunOperation.h"
 
-@interface CCPProject : NSObject
+@implementation FLShellRunner
 
-@property (nonatomic, copy, readonly) NSString* directoryPath;
-@property (nonatomic, copy, readonly) NSString* podspecPath;
-@property (nonatomic, copy, readonly) NSString* podfilePath;
-@property (nonatomic, copy, readonly) NSString* projectName;
-@property (nonatomic, copy, readonly) NSDictionary* infoDictionary;
-@property (nonatomic, readonly) NSString* workspacePath;
-
-+ (instancetype)projectForKeyWindow;
-
-- (id)initWithName:(NSString*)name path:(NSString*)path;
-
-- (void)createPodspecFromTemplate:(NSString*)_template;
-
-- (BOOL)hasPodfile;
-- (BOOL)hasPodspecFile;
-
-- (BOOL)containsFileWithName:(NSString*)fileName;
++ (void)runShellCommand:(NSString*)command withArgs:(NSArray*)args directory:(NSString*)directory completion:(void (^)(NSTask* t))completion
+{
+    static NSOperationQueue* operationQueue;
+    if (operationQueue == nil) {
+        operationQueue = [NSOperationQueue new];
+    }
+    
+    NSTask* task = [NSTask new];
+    
+    //    NSMutableDictionary* environment = [[[NSProcessInfo processInfo] environment] mutableCopy];
+    //    environment[@"LC_ALL"] = @"en_US.UTF-8";
+    //    environment[@"COCOAPODS_DISABLE_STATS"] = @"1";
+    //    [task setEnvironment:environment];
+    
+    task.currentDirectoryPath = directory;
+    task.launchPath = command;
+    task.arguments = args;
+    
+    FLRunOperation* operation = [[FLRunOperation alloc] initWithTask:task];
+    operation.completionBlock = ^{
+        if (completion)
+            completion(task);
+    };
+    [operationQueue addOperation:operation];
+}
 
 @end

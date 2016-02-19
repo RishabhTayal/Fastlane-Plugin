@@ -1,5 +1,5 @@
 //
-//  CCPShellHandler.m
+//  CCPXCodeConsole.h
 //
 //  Copyright (c) 2013 Delisa Mason. http://delisa.me
 //
@@ -22,35 +22,15 @@
 //  IN THE SOFTWARE.
 
 #import <AppKit/AppKit.h>
-#import "CCPShellRunner.h"
-#import "CCPRunOperation.h"
 
-@implementation CCPShellRunner
+@interface FLXCodeConsole : NSObject
 
-+ (void)runShellCommand:(NSString*)command withArgs:(NSArray*)args directory:(NSString*)directory completion:(void (^)(NSTask* t))completion
-{
-    static NSOperationQueue* operationQueue;
-    if (operationQueue == nil) {
-        operationQueue = [NSOperationQueue new];
-    }
-    
-    NSTask* task = [NSTask new];
-    
-    //    NSMutableDictionary* environment = [[[NSProcessInfo processInfo] environment] mutableCopy];
-    //    environment[@"LC_ALL"] = @"en_US.UTF-8";
-    //    environment[@"COCOAPODS_DISABLE_STATS"] = @"1";
-    //    [task setEnvironment:environment];
-    
-    task.currentDirectoryPath = directory;
-    task.launchPath = command;
-    task.arguments = args;
-    
-    CCPRunOperation* operation = [[CCPRunOperation alloc] initWithTask:task];
-    operation.completionBlock = ^{
-        if (completion)
-            completion(task);
-    };
-    [operationQueue addOperation:operation];
-}
++ (instancetype)consoleForKeyWindow;
+
+- (void)appendText:(NSString*)text;
+- (void)appendText:(NSString*)text color:(NSColor*)color;
+
+- (void)log:(id)obj;
+- (void)error:(id)obj;
 
 @end
