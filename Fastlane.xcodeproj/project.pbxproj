@@ -105,7 +105,6 @@
 				692C865B1C761FDC00012B4B /* Fastlane.m */,
 				692C865D1C761FDC00012B4B /* NSObject_Extension.h */,
 				692C865E1C761FDC00012B4B /* NSObject_Extension.m */,
-				692C86601C761FDC00012B4B /* Info.plist */,
 				692C86571C761FDC00012B4B /* Supporting Files */,
 			);
 			path = Fastlane;
@@ -114,6 +113,7 @@
 		692C86571C761FDC00012B4B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				692C86601C761FDC00012B4B /* Info.plist */,
 				692C86581C761FDC00012B4B /* Fastlane.xcscheme */,
 			);
 			name = "Supporting Files";
@@ -129,6 +129,7 @@
 				692C864B1C761FDC00012B4B /* Sources */,
 				692C864C1C761FDC00012B4B /* Resources */,
 				692C864D1C761FDC00012B4B /* Frameworks */,
+				BAC729588BDEDFCC6AEE06B7 /* Find unused imports */,
 			);
 			buildRules = (
 			);
@@ -180,6 +181,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BAC729588BDEDFCC6AEE06B7 /* Find unused imports */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Find unused imports";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/bin/sh \"/Users/rtayal/Library/Application Support/Developer/Shared/Xcode/Plug-ins/xcfui.xcplugin/Contents/Resources/fui_script.sh\" \"/Users/rtayal/Desktop/Personal/Fastlane-Plugin\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		692C864B1C761FDC00012B4B /* Sources */ = {
