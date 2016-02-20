@@ -11,6 +11,16 @@ OR
 
 Clone and build the project, then restart Xcode.
 
+OR
+
+### install_xcode_plugin
+
+Install an Xcode plugin for the current user
+
+```ruby
+install_xcode_plugin(url: 'https://github.com/RishabhTayal/Fastlane-Plugin/edit/master/README.md')
+```
+
 ##Uninstall
 
 Uninstall via [Alcatraz](http://alcatraz.io/)
