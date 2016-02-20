@@ -1,6 +1,7 @@
 # Fastlane-Plugin for Xcode
 
 ##Features
+- Add your Fastfile in xcode.
 
 ![Menu](https://raw.githubusercontent.com/RishabhTayal/Fastlane-Plugin/master/screenshot.png)
 
