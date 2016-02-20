@@ -32,4 +32,4 @@ Run `rm -r ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Fastla
 ##Author
 Rishabh Tayal: [@Rishabh_Tayal](http://twitter.com/rishabh_tayal)
 
-###Thanks: Felix Krause [@KrauseFx](http://twitter.com/krausefx)
+Thanks: Felix Krause [@KrauseFx](http://twitter.com/krausefx)
