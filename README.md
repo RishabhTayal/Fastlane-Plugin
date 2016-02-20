@@ -18,7 +18,7 @@ OR
 Install an Xcode plugin for the current user
 
 ```ruby
-install_xcode_plugin(url: 'https://github.com/RishabhTayal/Fastlane-Plugin/edit/master/README.md')
+install_xcode_plugin(url: 'https://github.com/RishabhTayal/Fastlane-Plugin/releases/download/1.0/Fastlane.xcplugin.zip')
 ```
 
 ##Uninstall
