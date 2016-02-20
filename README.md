@@ -30,6 +30,6 @@ OR
 Run `rm -r ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Fastlane-Plugin.xcplugin/`
 
 ##Author
-Rishabh Tayal: rtayal11@gmail.com
+Rishabh Tayal: [@Rishabh_Tayal](http://twitter.com/rishabh_tayal)
 
 ###Thanks: Felix Krause [@KrauseFx](http://twitter.com/krausefx)
