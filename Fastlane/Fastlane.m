@@ -64,6 +64,8 @@
         [self addLanesOptionToMenu:runFastlane];
         [_fastlaneMenuItem.submenu addItem:runFastlane];
         
+        [_fastlaneMenuItem.submenu addItem:[NSMenuItem separatorItem]];
+        
         NSMenuItem* setupFastlane = [[NSMenuItem alloc] initWithTitle:@"Setup Fastlane" action:@selector(setupFastlane) keyEquivalent:@""];
         setupFastlane.target = self;
         [_fastlaneMenuItem.submenu addItem:setupFastlane];
