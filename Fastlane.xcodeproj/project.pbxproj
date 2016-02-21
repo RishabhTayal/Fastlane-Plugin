@@ -16,8 +16,6 @@
 		692C86591C761FDC00012B4B /* Fastlane.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 692C86581C761FDC00012B4B /* Fastlane.xcscheme */; };
 		692C865C1C761FDC00012B4B /* Fastlane.m in Sources */ = {isa = PBXBuildFile; fileRef = 692C865B1C761FDC00012B4B /* Fastlane.m */; };
 		692C865F1C761FDC00012B4B /* NSObject_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 692C865E1C761FDC00012B4B /* NSObject_Extension.m */; };
-		699287DD1C7970CA001745BA /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 699287DB1C7970CA001745BA /* WindowController.m */; };
-		699287DE1C7970CA001745BA /* WindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 699287DC1C7970CA001745BA /* WindowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,9 +36,6 @@
 		692C865D1C761FDC00012B4B /* NSObject_Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSObject_Extension.h; sourceTree = "<group>"; };
 		692C865E1C761FDC00012B4B /* NSObject_Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSObject_Extension.m; sourceTree = "<group>"; };
 		692C86601C761FDC00012B4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		699287DA1C7970CA001745BA /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
-		699287DB1C7970CA001745BA /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
-		699287DC1C7970CA001745BA /* WindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,9 +100,6 @@
 				692C865B1C761FDC00012B4B /* Fastlane.m */,
 				692C865D1C761FDC00012B4B /* NSObject_Extension.h */,
 				692C865E1C761FDC00012B4B /* NSObject_Extension.m */,
-				699287DA1C7970CA001745BA /* WindowController.h */,
-				699287DB1C7970CA001745BA /* WindowController.m */,
-				699287DC1C7970CA001745BA /* WindowController.xib */,
 				692C86571C761FDC00012B4B /* Supporting Files */,
 			);
 			path = Fastlane;
@@ -179,7 +171,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				692C86591C761FDC00012B4B /* Fastlane.xcscheme in Resources */,
-				699287DE1C7970CA001745BA /* WindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,7 +182,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				691AB4651C767CE9001D45F6 /* FLWorkspaceManager.m in Sources */,
-				699287DD1C7970CA001745BA /* WindowController.m in Sources */,
 				692C865C1C761FDC00012B4B /* Fastlane.m in Sources */,
 				691AB4661C767CE9001D45F6 /* FLXCodeConsole.m in Sources */,
 				692C865F1C761FDC00012B4B /* NSObject_Extension.m in Sources */,

@@ -126,14 +126,10 @@
 }
 
 -(void)setupFastlane {
-    //    FLShellRunner* shellRunner = [[FLShellRunner alloc] init];
-    //    [shellRunner runScriptPath:[[FLProject projectForKeyWindow] fastlanePath] arguments:@[@"init"] completion:^(NSData *data) {
-    //        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    //    }];
-    
-    [[NSApp keyWindow] beginSheet:[WindowController new].window completionHandler:^(NSModalResponse returnCode) {
-        
-    }];
+    FLShellRunner* runner = [[FLShellRunner alloc] init];
+    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[
+                                                            @"-e", @"tell app \"Terminal\" to do script \"fastlane init\""] completion:^(NSData *data) {
+                                                            }];
 }
 
 - (void)dealloc {
