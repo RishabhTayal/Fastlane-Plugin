@@ -14,6 +14,7 @@
 @interface Fastlane()
 
 @property (nonatomic, strong, readwrite) NSBundle *bundle;
+
 @property (nonatomic, strong) NSMenuItem* fastlaneMenuItem;
 @property (nonatomic, strong) NSMenuItem* addEditFastlaneMenuItem;
 
@@ -46,7 +47,9 @@
     // Create menu items, initialize UI, etc.
     NSMenuItem *topMenuItem = [[NSApp mainMenu] itemWithTitle:@"Product"];
     if (topMenuItem) {
+        
         [[topMenuItem submenu] addItem:[NSMenuItem separatorItem]];
+        
         _fastlaneMenuItem = [[NSMenuItem alloc] initWithTitle:@"Fastlane" action:nil keyEquivalent:@""];
         [_fastlaneMenuItem setTarget:self];
         _fastlaneMenuItem.submenu = [[NSMenu alloc] initWithTitle:@"Fastlane"];
@@ -58,10 +61,12 @@
         NSMenuItem* runFastlane = [[NSMenuItem alloc] initWithTitle:@"Run Fastlane 🚀" action:@selector(runFastlane) keyEquivalent:@""];
         runFastlane.target = self;
         //        runFastlane.submenu = [[NSMenu alloc] initWithTitle:@"Run Fastlane 🚀"];
-        
         [self addLanesOptionToMenu:runFastlane];
-        
         [_fastlaneMenuItem.submenu addItem:runFastlane];
+        
+        NSMenuItem* setupFastlane = [[NSMenuItem alloc] initWithTitle:@"Setup Fastlane" action:@selector(setupFastlane) keyEquivalent:@""];
+        setupFastlane.target = self;
+        [_fastlaneMenuItem.submenu addItem:setupFastlane];
         
         [topMenuItem.submenu insertItem:_fastlaneMenuItem atIndex:[topMenuItem.submenu indexOfItemWithTitle:@"Build For"]];
     }
@@ -115,6 +120,13 @@
     FLShellRunner* shellRunner = [[FLShellRunner alloc] init];
     //    [shellRunner runScriptPath:[[FLProject projectForKeyWindow] fastlanePath] arguments:@[@"lanes", @"--json"]];
     [shellRunner runScriptPath:[[FLProject projectForKeyWindow] fastlanePath] arguments:@[@"lanes"] completion:^(NSData *data) {
+        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    }];
+}
+
+-(void)setupFastlane {
+    FLShellRunner* shellRunner = [[FLShellRunner alloc] init];
+    [shellRunner runScriptPath:[[FLProject projectForKeyWindow] fastlanePath] arguments:@[@"init"] completion:^(NSData *data) {
         NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     }];
 }
