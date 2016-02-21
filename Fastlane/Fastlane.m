@@ -10,6 +10,7 @@
 #import "FLShellRunner.h"
 #import "FLWorkspaceManager.h"
 #import "FLProject.h"
+#import "WindowController.h"
 
 @interface Fastlane()
 
@@ -125,9 +126,13 @@
 }
 
 -(void)setupFastlane {
-    FLShellRunner* shellRunner = [[FLShellRunner alloc] init];
-    [shellRunner runScriptPath:[[FLProject projectForKeyWindow] fastlanePath] arguments:@[@"init"] completion:^(NSData *data) {
-        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    //    FLShellRunner* shellRunner = [[FLShellRunner alloc] init];
+    //    [shellRunner runScriptPath:[[FLProject projectForKeyWindow] fastlanePath] arguments:@[@"init"] completion:^(NSData *data) {
+    //        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    //    }];
+    
+    [[NSApp keyWindow] beginSheet:[WindowController new].window completionHandler:^(NSModalResponse returnCode) {
+        
     }];
 }
 
