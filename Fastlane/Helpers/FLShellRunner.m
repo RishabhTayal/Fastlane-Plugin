@@ -1,56 +1,66 @@
 //
-//  CCPShellHandler.m
+//  FLShellRunner.m
+//  Fastlane
 //
-//  Copyright (c) 2013 Delisa Mason. http://delisa.me
+//  Created by Tayal, Rishabh on 2/18/16.
+//  Copyright © 2016 Tayal, Rishabh. All rights reserved.
 //
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to
-//  deal in the Software without restriction, including without limitation the
-//  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-//  sell copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-//  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-//  IN THE SOFTWARE.
 
 #import <AppKit/AppKit.h>
 #import "FLShellRunner.h"
-#import "FLRunOperation.h"
+
+@interface FLShellRunner()
+
+@property (nonatomic, strong) __block NSTask *buildTask;
+@property (nonatomic, strong) NSPipe *outputPipe;
+
+
+@end
 
 @implementation FLShellRunner
 
-+ (void)runShellCommand:(NSString*)command withArgs:(NSArray*)args directory:(NSString*)directory completion:(void (^)(NSTask* t))completion
-{
-    static NSOperationQueue* operationQueue;
-    if (operationQueue == nil) {
-        operationQueue = [NSOperationQueue new];
-    }
-    
-    NSTask* task = [NSTask new];
-    
-    //    NSMutableDictionary* environment = [[[NSProcessInfo processInfo] environment] mutableCopy];
-    //    environment[@"LC_ALL"] = @"en_US.UTF-8";
-    //    environment[@"COCOAPODS_DISABLE_STATS"] = @"1";
-    //    [task setEnvironment:environment];
-    
-    task.currentDirectoryPath = directory;
-    task.launchPath = command;
-    task.arguments = args;
-    
-    FLRunOperation* operation = [[FLRunOperation alloc] initWithTask:task];
-    operation.completionBlock = ^{
-        if (completion)
-            completion(task);
-    };
-    [operationQueue addOperation:operation];
+-(void)runScriptPath:(NSString*)path arguments:(NSArray*)arguments completion:(completion)completion {
+    NSLog(@"Running: %@", path);
+    dispatch_queue_t taskQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
+    dispatch_async(taskQueue, ^{
+        
+        @try {
+            
+            //            NSString *path  = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] pathForResource:@"BuildScript" ofType:@"command"]];
+            
+            self.buildTask            = [[NSTask alloc] init];
+            self.buildTask.launchPath = path;
+            self.buildTask.arguments  = arguments;
+            
+            // Output Handling
+            self.outputPipe               = [[NSPipe alloc] init];
+            self.buildTask.standardOutput = self.outputPipe;
+            
+            [[self.outputPipe fileHandleForReading] waitForDataInBackgroundAndNotify];
+            
+            [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:[self.outputPipe fileHandleForReading] queue:nil usingBlock:^(NSNotification *notification){
+                
+                NSData *output = [[self.outputPipe fileHandleForReading] availableData];
+                NSString *outStr = [[NSString alloc] initWithData:output encoding:NSUTF8StringEncoding];
+                completion(output);
+                NSLog(@"%@", outStr);
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    // Scroll to end of outputText field
+                });
+                [[self.outputPipe fileHandleForReading] waitForDataInBackgroundAndNotify];
+            }];
+            
+            [self.buildTask launch];
+            
+            [self.buildTask waitUntilExit];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Problem Running Task: %@", [exception description]);
+        }
+        @finally {
+            
+        }
+    });
 }
 
 @end
