@@ -10,7 +10,6 @@
 #import "FLShellRunner.h"
 #import "FLWorkspaceManager.h"
 #import "FLProject.h"
-#import "WindowController.h"
 
 @interface Fastlane()
 
