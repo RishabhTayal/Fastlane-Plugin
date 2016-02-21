@@ -3,6 +3,7 @@
 ##Features
 - Run `fastlane` command with one click.
 - Add your Fastfile in xcode.
+- Setup Fastlane.
 
 ![Menu](https://raw.githubusercontent.com/RishabhTayal/Fastlane-Plugin/master/screenshot.png)
 
