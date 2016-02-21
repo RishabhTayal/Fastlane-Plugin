@@ -20,7 +20,7 @@
 @implementation FLShellRunner
 
 -(void)runScriptPath:(NSString*)path arguments:(NSArray*)arguments completion:(completion)completion {
-    
+    NSLog(@"Running: %@", path);
     dispatch_queue_t taskQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     dispatch_async(taskQueue, ^{
         
