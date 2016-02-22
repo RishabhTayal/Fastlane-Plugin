@@ -121,9 +121,12 @@
     
     FLShellRunner* shellRunner = [[FLShellRunner alloc] init];
     NSString* path = [NSString stringWithFormat:@"%@/Desktop/Personal/fastlane/bin/fastlane", NSHomeDirectory()];
-    [shellRunner runScriptPath:path arguments:@[@"lanes", @"--json"] withDirectoryPath:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSData *data) {
-        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSData* data = [shellRunner runScriptPath:path arguments:@[@"lanes", @"--json"] withDirectoryPath:[FLWorkspaceManager currentWorkspaceDirectoryPath]];
+        NSString* string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSString* jsonString = [string substringWithRange:NSMakeRange([string rangeOfString:@"{"].location, string.length - [string rangeOfString:@"{"].location)];
+        NSLog(@"JSON: %@", [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil]);
+    });
 }
 
 -(void)setupFastlane {

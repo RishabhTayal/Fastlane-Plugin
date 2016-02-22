@@ -62,4 +62,24 @@
     });
 }
 
+-(NSData*)runScriptPath:(NSString *)path arguments:(NSArray *)arguments withDirectoryPath:(NSString *)directorypath {
+    self.buildTask = [[NSTask alloc] init];
+    
+    self.buildTask.launchPath = path;
+    self.buildTask.arguments = arguments;
+    self.buildTask.currentDirectoryPath = directorypath;
+    
+    self.outputPipe = [NSPipe pipe];
+    [self.buildTask setStandardOutput:self.outputPipe];
+    [self.buildTask setStandardError:self.outputPipe];
+    NSFileHandle *readHandle = [self.outputPipe fileHandleForReading];
+    
+    [self.buildTask launch];
+    [self.buildTask waitUntilExit];
+    
+    NSData *outputData = [readHandle readDataToEndOfFile];
+    //    NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
+    return outputData;
+}
+
 @end
