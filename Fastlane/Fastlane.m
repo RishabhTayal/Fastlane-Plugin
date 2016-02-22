@@ -128,9 +128,17 @@
 
 -(void)setupFastlane {
     FLShellRunner* runner = [[FLShellRunner alloc] init];
-    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[
-                                                            @"-e", @"tell app \"Terminal\" to do script \"fastlane init\""] completion:^(NSData *data) {
-                                                            }];
+    
+    NSArray *apps = [[NSWorkspace sharedWorkspace] runningApplications];
+    for (NSRunningApplication *app in apps) {
+        if([app.bundleIdentifier.lowercaseString isEqualToString:@"com.apple.terminal"]) {
+            [app activateWithOptions:NSApplicationActivateAllWindows|NSApplicationActivateIgnoringOtherApps];
+            break;
+        }
+    }
+    
+    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[@"-e", @"tell app \"Terminal\" to do script \"fastlane init\""] completion:^(NSData *data) {
+    }];
 }
 
 - (void)dealloc {

@@ -14,7 +14,6 @@
 @property (nonatomic, strong) __block NSTask *buildTask;
 @property (nonatomic, strong) NSPipe *outputPipe;
 
-
 @end
 
 @implementation FLShellRunner
@@ -25,9 +24,6 @@
     dispatch_async(taskQueue, ^{
         
         @try {
-            
-            //            NSString *path  = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] pathForResource:@"BuildScript" ofType:@"command"]];
-            
             self.buildTask            = [[NSTask alloc] init];
             self.buildTask.launchPath = path;
             self.buildTask.arguments  = arguments;
@@ -42,10 +38,12 @@
                 
                 NSData *output = [[self.outputPipe fileHandleForReading] availableData];
                 NSString *outStr = [[NSString alloc] initWithData:output encoding:NSUTF8StringEncoding];
-                completion(output);
+                
                 NSLog(@"%@", outStr);
                 dispatch_sync(dispatch_get_main_queue(), ^{
-                    // Scroll to end of outputText field
+                    if (completion) {
+                        completion(output);
+                    }
                 });
                 [[self.outputPipe fileHandleForReading] waitForDataInBackgroundAndNotify];
             }];
