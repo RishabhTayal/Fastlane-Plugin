@@ -19,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1815FD761D8341322B11A7E5 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		57D412E5A9A5A8E78FA226C9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		63723B60D83EE8D7D65B33F9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		691AB4581C767CE9001D45F6 /* FLProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLProject.h; sourceTree = "<group>"; };
 		691AB4591C767CE9001D45F6 /* FLProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLProject.m; sourceTree = "<group>"; };
 		691AB45C1C767CE9001D45F6 /* FLShellRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLShellRunner.h; sourceTree = "<group>"; };
@@ -72,6 +75,7 @@
 				692C86561C761FDC00012B4B /* Fastlane */,
 				692C86511C761FDC00012B4B /* Frameworks */,
 				692C86501C761FDC00012B4B /* Products */,
+				960095982514D239365FEFBD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,6 +92,7 @@
 			children = (
 				692C86521C761FDC00012B4B /* AppKit.framework */,
 				692C86541C761FDC00012B4B /* Foundation.framework */,
+				1815FD761D8341322B11A7E5 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -112,6 +117,15 @@
 				692C86581C761FDC00012B4B /* Fastlane.xcscheme */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		960095982514D239365FEFBD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				63723B60D83EE8D7D65B33F9 /* Pods.debug.xcconfig */,
+				57D412E5A9A5A8E78FA226C9 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +282,7 @@
 		};
 		692C86641C761FDC00012B4B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63723B60D83EE8D7D65B33F9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
@@ -283,6 +298,7 @@
 		};
 		692C86651C761FDC00012B4B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57D412E5A9A5A8E78FA226C9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;

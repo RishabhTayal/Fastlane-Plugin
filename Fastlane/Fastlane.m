@@ -120,8 +120,8 @@
     //    }];
     
     FLShellRunner* shellRunner = [[FLShellRunner alloc] init];
-    //    [shellRunner runScriptPath:[[FLProject projectForKeyWindow] fastlanePath] arguments:@[@"lanes", @"--json"]];
-    [shellRunner runScriptPath:[[FLProject projectForKeyWindow] fastlanePath] arguments:@[@"lanes"] completion:^(NSData *data) {
+    NSString* path = [NSString stringWithFormat:@"%@/Desktop/Personal/fastlane/bin/fastlane", NSHomeDirectory()];
+    [shellRunner runScriptPath:path arguments:@[@"lanes", @"--json"] withDirectoryPath:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSData *data) {
         NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
     }];
 }
@@ -137,7 +137,7 @@
         }
     }
     
-    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[@"-e", @"tell app \"Terminal\" to do script \"fastlane init\""] completion:^(NSData *data) {
+    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[@"-e", @"tell app \"Terminal\" to do script \"fastlane init\""] withDirectoryPath:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSData *data) {
     }];
 }
 
