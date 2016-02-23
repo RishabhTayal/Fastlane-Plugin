@@ -12,6 +12,7 @@
 
 typedef void(^completion)(NSData* data);
 
--(void)runScriptPath:(NSString*)path arguments:(NSArray*)arguments completion:(completion)completion;
+-(void)runScriptPath:(NSString*)path arguments:(NSArray*)arguments withDirectoryPath:(NSString*)directorypath completion:(completion)completion;
+-(NSData*)runScriptPath:(NSString *)path arguments:(NSArray *)arguments withDirectoryPath:(NSString *)directorypath;
 
 @end
