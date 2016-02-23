@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) __block NSTask *buildTask;
 @property (nonatomic, strong) NSPipe *outputPipe;
+@property (nonatomic, strong) NSPipe* inputPipe;
 
 @end
 
@@ -31,6 +32,9 @@
             // Output Handling
             self.outputPipe               = [[NSPipe alloc] init];
             self.buildTask.standardOutput = self.outputPipe;
+            
+            self.inputPipe = [[NSPipe alloc] init];
+            self.buildTask.standardInput = self.inputPipe;
             
             [[self.outputPipe fileHandleForReading] waitForDataInBackgroundAndNotify];
             
@@ -59,6 +63,10 @@
             
         }
     });
+}
+
+-(void)addUserInput:(NSString*)userInput {
+    [self.inputPipe.fileHandleForWriting writeData:[userInput dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 @end

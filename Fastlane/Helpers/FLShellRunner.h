@@ -13,5 +13,6 @@
 typedef void(^completion)(NSData* data);
 
 -(void)runScriptPath:(NSString*)path arguments:(NSArray*)arguments completion:(completion)completion;
+-(void)addUserInput:(NSString*)userInput;
 
 @end
