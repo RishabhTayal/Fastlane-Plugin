@@ -10,6 +10,7 @@
 #import "FLShellRunner.h"
 #import "FLWorkspaceManager.h"
 #import "FLProject.h"
+#import "LanesWindow.h"
 
 @interface Fastlane()
 
@@ -17,6 +18,8 @@
 
 @property (nonatomic, strong) NSMenuItem* fastlaneMenuItem;
 @property (nonatomic, strong) NSMenuItem* addEditFastlaneMenuItem;
+
+@property (nonatomic, strong) LanesWindow* lanesWindow;
 
 @end
 
@@ -120,17 +123,35 @@
     //    }];
     
     FLShellRunner* shellRunner = [[FLShellRunner alloc] init];
-    //    [shellRunner runScriptPath:[[FLProject projectForKeyWindow] fastlanePath] arguments:@[@"lanes", @"--json"]];
-    [shellRunner runScriptPath:[[FLProject projectForKeyWindow] fastlanePath] arguments:@[@"lanes"] completion:^(NSData *data) {
-        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    }];
+    NSString* path = [NSString stringWithFormat:@"%@/Desktop/Personal/fastlane/bin/fastlane", NSHomeDirectory()];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSData* data = [shellRunner runScriptPath:path arguments:@[@"lanes", @"--json"] withDirectoryPath:[FLWorkspaceManager currentWorkspaceDirectoryPath]];
+        NSString* string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSString* jsonString = [string substringWithRange:NSMakeRange([string rangeOfString:@"{"].location, string.length - [string rangeOfString:@"{"].location)];
+        NSLog(@"JSON: %@", [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil]);
+        id lanesJson = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _lanesWindow = [LanesWindow new];
+            _lanesWindow.lanesData = lanesJson;
+            _lanesWindow.workspacePath = [FLWorkspaceManager currentWorkspaceDirectoryPath];
+            [[NSApp keyWindow] beginSheet:_lanesWindow.window completionHandler:nil];
+        });
+    });
 }
 
 -(void)setupFastlane {
     FLShellRunner* runner = [[FLShellRunner alloc] init];
-    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[
-                                                            @"-e", @"tell app \"Terminal\" to do script \"fastlane init\""] completion:^(NSData *data) {
-                                                            }];
+    
+    NSArray *apps = [[NSWorkspace sharedWorkspace] runningApplications];
+    for (NSRunningApplication *app in apps) {
+        if([app.bundleIdentifier.lowercaseString isEqualToString:@"com.apple.terminal"]) {
+            [app activateWithOptions:NSApplicationActivateAllWindows|NSApplicationActivateIgnoringOtherApps];
+            break;
+        }
+    }
+    
+    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[@"-e", @"tell app \"Terminal\" to do script \"fastlane init\""] withDirectoryPath:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSData *data) {
+    }];
 }
 
 - (void)dealloc {

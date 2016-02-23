@@ -14,23 +14,20 @@
 @property (nonatomic, strong) __block NSTask *buildTask;
 @property (nonatomic, strong) NSPipe *outputPipe;
 
-
 @end
 
 @implementation FLShellRunner
 
--(void)runScriptPath:(NSString*)path arguments:(NSArray*)arguments completion:(completion)completion {
+-(void)runScriptPath:(NSString*)path arguments:(NSArray*)arguments withDirectoryPath:(NSString*)directorypath completion:(completion)completion {
     NSLog(@"Running: %@", path);
     dispatch_queue_t taskQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     dispatch_async(taskQueue, ^{
         
         @try {
-            
-            //            NSString *path  = [NSString stringWithFormat:@"%@", [[NSBundle mainBundle] pathForResource:@"BuildScript" ofType:@"command"]];
-            
             self.buildTask            = [[NSTask alloc] init];
             self.buildTask.launchPath = path;
             self.buildTask.arguments  = arguments;
+            self.buildTask.currentDirectoryPath = directorypath;
             
             // Output Handling
             self.outputPipe               = [[NSPipe alloc] init];
@@ -42,10 +39,12 @@
                 
                 NSData *output = [[self.outputPipe fileHandleForReading] availableData];
                 NSString *outStr = [[NSString alloc] initWithData:output encoding:NSUTF8StringEncoding];
-                completion(output);
+                
                 NSLog(@"%@", outStr);
                 dispatch_sync(dispatch_get_main_queue(), ^{
-                    // Scroll to end of outputText field
+                    if (completion) {
+                        completion(output);
+                    }
                 });
                 [[self.outputPipe fileHandleForReading] waitForDataInBackgroundAndNotify];
             }];
@@ -61,6 +60,26 @@
             
         }
     });
+}
+
+-(NSData*)runScriptPath:(NSString *)path arguments:(NSArray *)arguments withDirectoryPath:(NSString *)directorypath {
+    self.buildTask = [[NSTask alloc] init];
+    
+    self.buildTask.launchPath = path;
+    self.buildTask.arguments = arguments;
+    self.buildTask.currentDirectoryPath = directorypath;
+    
+    self.outputPipe = [NSPipe pipe];
+    [self.buildTask setStandardOutput:self.outputPipe];
+    [self.buildTask setStandardError:self.outputPipe];
+    NSFileHandle *readHandle = [self.outputPipe fileHandleForReading];
+    
+    [self.buildTask launch];
+    [self.buildTask waitUntilExit];
+    
+    NSData *outputData = [readHandle readDataToEndOfFile];
+    //    NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
+    return outputData;
 }
 
 @end
