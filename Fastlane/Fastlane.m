@@ -10,6 +10,7 @@
 #import "FLShellRunner.h"
 #import "FLWorkspaceManager.h"
 #import "FLProject.h"
+#import "LanesWindow.h"
 
 @interface Fastlane()
 
@@ -17,6 +18,8 @@
 
 @property (nonatomic, strong) NSMenuItem* fastlaneMenuItem;
 @property (nonatomic, strong) NSMenuItem* addEditFastlaneMenuItem;
+
+@property (nonatomic, strong) LanesWindow* lanesWindow;
 
 @end
 
@@ -126,6 +129,13 @@
         NSString* string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSString* jsonString = [string substringWithRange:NSMakeRange([string rangeOfString:@"{"].location, string.length - [string rangeOfString:@"{"].location)];
         NSLog(@"JSON: %@", [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil]);
+        id lanesJson = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _lanesWindow = [LanesWindow new];
+            _lanesWindow.lanesData = lanesJson;
+            _lanesWindow.workspacePath = [FLWorkspaceManager currentWorkspaceDirectoryPath];
+            [[NSApp keyWindow] beginSheet:_lanesWindow.window completionHandler:nil];
+        });
     });
 }
 
