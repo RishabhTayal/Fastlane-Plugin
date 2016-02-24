@@ -56,17 +56,17 @@
     }
     
     FLShellRunner* runner = [[FLShellRunner alloc] init];
-    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[@"-e", [NSString stringWithFormat:@"tell app \"Terminal\" to do script \"fastlane %@ %@\"", self.popUpButton1.titleOfSelectedItem, self.popUpButton2.titleOfSelectedItem]] withDirectoryPath:_workspacePath completion:^(NSData *data) {
+    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[@"-e", [NSString stringWithFormat:@"tell app \"Terminal\" \n do script activate \n delay 1 \n do script \"cd %@\" in window 1 \n do script \"fastlane %@ %@\" in window 1 \n end tell", _workspacePath,self.popUpButton1.titleOfSelectedItem, self.popUpButton2.titleOfSelectedItem]] withDirectoryPath:_workspacePath completion:^(NSData *data) {
     }];
 }
 
 -(IBAction)popup1Changed:(id)sender {
     NSString* selectedType = self.popUpButton1.titleOfSelectedItem;
     NSDictionary* lanes = _lanesData[selectedType];
-    
+
+    [self.popUpButton2 removeAllItems];
     for (id lane in lanes.allKeys) {
         NSLog(@"%@", lane);
-        [self.popUpButton2 removeAllItems];
         [self.popUpButton2 addItemWithTitle:lane];
     }
 }
