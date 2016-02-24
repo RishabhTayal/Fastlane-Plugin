@@ -149,8 +149,8 @@
             break;
         }
     }
-    
-    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[@"-e", @"tell app \"Terminal\" to do script \"fastlane init\""] withDirectoryPath:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSData *data) {
+
+    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[@"-e", [NSString stringWithFormat:@"tell app \"Terminal\" \n do script activate \n delay 1 \n do script \"cd %@\" in window 1 \ndo script \"fastlane init\" in window 1\n end tell", [FLWorkspaceManager currentWorkspaceDirectoryPath]]] withDirectoryPath:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSData *data) {
     }];
 }
 
