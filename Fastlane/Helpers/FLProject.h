@@ -26,9 +26,7 @@
 @interface FLProject : NSObject
 
 @property (nonatomic, copy, readonly) NSString* directoryPath;
-//@property (nonatomic, copy, readonly) NSString* podspecPath;
 @property (nonatomic, copy, readonly) NSString* fastfilePath;
-//@property (nonatomic, copy, readonly) NSString* fastlanePath;
 @property (nonatomic, copy, readonly) NSString* projectName;
 @property (nonatomic, copy, readonly) NSDictionary* infoDictionary;
 @property (nonatomic, readonly) NSString* workspacePath;
@@ -37,10 +35,7 @@
 
 - (id)initWithName:(NSString*)name path:(NSString*)path;
 
-//- (void)createPodspecFromTemplate:(NSString*)_template;
-
 - (BOOL)hasFastfile;
-//- (BOOL)hasPodspecFile;
 
 - (BOOL)containsFileWithName:(NSString*)fileName;
 
