@@ -6,11 +6,11 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="LanesWindow">
             <connections>
-                <outlet property="environmentTextField" destination="K50-mI-bJ1" id="iZS-Jt-qEv"/>
                 <outlet property="fastlaneButton" destination="bAN-WQ-4rp" id="5zj-Jz-Lvk"/>
                 <outlet property="laneDescTextField" destination="alp-tC-dMr" id="fG0-k1-URA"/>
                 <outlet property="popUpButton1" destination="Qvb-zg-fdH" id="aNN-cc-imO"/>
                 <outlet property="popUpButton2" destination="ZV5-c8-eUx" id="45X-dV-Jwp"/>
+                <outlet property="popUpButton3" destination="NTm-b1-VkB" id="Ul6-O4-wgg"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -50,7 +50,7 @@
                         </buttonCell>
                     </button>
                     <popUpButton horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ZV5-c8-eUx">
-                        <rect key="frame" x="116" y="122" width="73" height="26"/>
+                        <rect key="frame" x="116" y="122" width="169" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Item 2" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="ewz-Lv-nMr" id="ScP-bI-cLA">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -74,27 +74,33 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K50-mI-bJ1">
-                        <rect key="frame" x="206" y="124" width="164" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="select env (optional)" drawsBackground="YES" id="VKi-39-ET0">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
+                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NTm-b1-VkB">
+                        <rect key="frame" x="300" y="122" width="73" height="26"/>
+                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="tZA-FL-g5t" id="VVh-cJ-Vau">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="1Ky-Br-3gD">
+                                <items>
+                                    <menuItem title="Item 1" state="on" id="tZA-FL-g5t"/>
+                                    <menuItem title="Item 2" id="HcQ-rW-6g2"/>
+                                    <menuItem title="Item 3" id="C8v-nx-ipw"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="NTm-b1-VkB" firstAttribute="leading" secondItem="ZV5-c8-eUx" secondAttribute="trailing" constant="20" id="2JU-nM-3Iw"/>
                     <constraint firstItem="Qvb-zg-fdH" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="6lh-al-nDJ"/>
                     <constraint firstItem="bAN-WQ-4rp" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="FUU-V2-ISW"/>
                     <constraint firstItem="ZV5-c8-eUx" firstAttribute="leading" secondItem="Qvb-zg-fdH" secondAttribute="trailing" constant="30" id="KYO-c9-21b"/>
                     <constraint firstItem="bAN-WQ-4rp" firstAttribute="top" secondItem="alp-tC-dMr" secondAttribute="bottom" constant="20" id="MS7-cO-edb"/>
                     <constraint firstItem="alp-tC-dMr" firstAttribute="top" secondItem="ZV5-c8-eUx" secondAttribute="bottom" constant="20" id="PhR-Z6-Bz5"/>
                     <constraint firstItem="Qvb-zg-fdH" firstAttribute="centerY" secondItem="se5-gp-TjO" secondAttribute="centerY" id="Plq-9p-cHz"/>
+                    <constraint firstAttribute="trailing" secondItem="NTm-b1-VkB" secondAttribute="trailing" constant="20" id="aWW-Dj-YWj"/>
+                    <constraint firstItem="NTm-b1-VkB" firstAttribute="centerY" secondItem="ZV5-c8-eUx" secondAttribute="centerY" id="ewp-gR-qEG"/>
                     <constraint firstItem="alp-tC-dMr" firstAttribute="leading" secondItem="ZV5-c8-eUx" secondAttribute="leading" id="fcd-t9-Fc7"/>
                     <constraint firstAttribute="trailing" secondItem="alp-tC-dMr" secondAttribute="trailing" constant="20" id="gIp-Uh-EwU"/>
-                    <constraint firstAttribute="trailing" secondItem="K50-mI-bJ1" secondAttribute="trailing" constant="20" id="gmz-LV-Tkh"/>
-                    <constraint firstItem="K50-mI-bJ1" firstAttribute="centerY" secondItem="ZV5-c8-eUx" secondAttribute="centerY" id="pwr-4f-yKE"/>
-                    <constraint firstItem="K50-mI-bJ1" firstAttribute="leading" secondItem="ZV5-c8-eUx" secondAttribute="trailing" constant="20" id="umV-88-UcJ"/>
                     <constraint firstItem="ZV5-c8-eUx" firstAttribute="centerY" secondItem="Qvb-zg-fdH" secondAttribute="centerY" id="vDo-2d-GGx"/>
                 </constraints>
             </view>

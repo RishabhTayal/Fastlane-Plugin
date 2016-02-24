@@ -15,8 +15,8 @@
 
 @property (nonatomic, weak) IBOutlet NSPopUpButton* popUpButton1;
 @property (nonatomic, weak) IBOutlet NSPopUpButton* popUpButton2;
+@property (nonatomic, weak) IBOutlet NSPopUpButton* popUpButton3;
 @property (nonatomic, weak) IBOutlet NSTextField* laneDescTextField;
-@property (nonatomic, weak) IBOutlet NSTextField* environmentTextField;
 @property (nonatomic, weak) IBOutlet NSButton* fastlaneButton;
 
 @end
@@ -46,6 +46,8 @@
     
     self.fastlaneButton.target = self;
     [self.fastlaneButton setAction:@selector(runFastlane:)];
+    
+    [self loadEnvironments];
 }
 
 - (IBAction)runFastlane:(NSButton *)sender {
@@ -59,8 +61,8 @@
     
     NSString* script = [NSString stringWithFormat:@"tell app \"Terminal\" \n do script activate \n delay 1 \n do script \"cd %@\" in window 1 \n do script \"fastlane %@ %@", _workspacePath,self.popUpButton1.titleOfSelectedItem, self.popUpButton2.titleOfSelectedItem];
     
-    if (self.environmentTextField.stringValue.length > 0) {
-        script = [script stringByAppendingString:[NSString stringWithFormat:@" --env %@", self.environmentTextField.stringValue]];
+    if (self.popUpButton3.stringValue.length > 0) {
+        script = [script stringByAppendingString:[NSString stringWithFormat:@" --env %@", self.popUpButton3.titleOfSelectedItem]];
     }
     
     script = [script stringByAppendingString:@"\" in window 1 \n end tell"];
@@ -92,6 +94,21 @@
             return;
         }
     }
+}
+
+-(void)loadEnvironments {
+    NSArray* dirFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/fastlane", _workspacePath] error:nil];
+    NSLog(@"%@", dirFiles);
+    NSArray* envFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH %@", @".env"]];
+    NSLog(@"%@", envFiles);
+    NSMutableArray* enviornments = [NSMutableArray new];
+    for (NSString* env in envFiles) {
+        NSRange range = [env rangeOfString:@".env"];
+        [enviornments addObject:[env stringByReplacingCharactersInRange:range withString:@""]];
+    }
+    
+    [self.popUpButton3 removeAllItems];
+    [self.popUpButton3 addItemsWithTitles:enviornments];
 }
 
 @end
