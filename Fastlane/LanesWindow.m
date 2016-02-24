@@ -16,6 +16,7 @@
 @property (nonatomic, weak) IBOutlet NSPopUpButton* popUpButton1;
 @property (nonatomic, weak) IBOutlet NSPopUpButton* popUpButton2;
 @property (nonatomic, weak) IBOutlet NSTextField* laneDescTextField;
+@property (nonatomic, weak) IBOutlet NSTextField* environmentTextField;
 @property (nonatomic, weak) IBOutlet NSButton* fastlaneButton;
 
 @end
@@ -56,8 +57,16 @@
         }
     }
     
+    NSString* script = [NSString stringWithFormat:@"tell app \"Terminal\" \n do script activate \n delay 1 \n do script \"cd %@\" in window 1 \n do script \"fastlane %@ %@", _workspacePath,self.popUpButton1.titleOfSelectedItem, self.popUpButton2.titleOfSelectedItem];
+    
+    if (self.environmentTextField.stringValue.length > 0) {
+        script = [script stringByAppendingString:[NSString stringWithFormat:@" --env %@", self.environmentTextField.stringValue]];
+    }
+    
+    script = [script stringByAppendingString:@"\" in window 1 \n end tell"];
+    
     FLShellRunner* runner = [[FLShellRunner alloc] init];
-    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[@"-e", [NSString stringWithFormat:@"tell app \"Terminal\" \n do script activate \n delay 1 \n do script \"cd %@\" in window 1 \n do script \"fastlane %@ %@\" in window 1 \n end tell", _workspacePath,self.popUpButton1.titleOfSelectedItem, self.popUpButton2.titleOfSelectedItem]] withDirectoryPath:_workspacePath completion:^(NSData *data) {
+    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[@"-e", script] withDirectoryPath:_workspacePath completion:^(NSData *data) {
     }];
 }
 

@@ -6,6 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="LanesWindow">
             <connections>
+                <outlet property="environmentTextField" destination="K50-mI-bJ1" id="iZS-Jt-qEv"/>
                 <outlet property="fastlaneButton" destination="bAN-WQ-4rp" id="5zj-Jz-Lvk"/>
                 <outlet property="laneDescTextField" destination="alp-tC-dMr" id="fG0-k1-URA"/>
                 <outlet property="popUpButton1" destination="Qvb-zg-fdH" id="aNN-cc-imO"/>
@@ -41,8 +42,15 @@
                             <action selector="popup1Changed:" target="-2" id="HZq-Yb-t9A"/>
                         </connections>
                     </popUpButton>
-                    <popUpButton verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ZV5-c8-eUx">
-                        <rect key="frame" x="116" y="122" width="257" height="26"/>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bAN-WQ-4rp">
+                        <rect key="frame" x="124" y="40" width="142" height="32"/>
+                        <buttonCell key="cell" type="push" title="Run Fastlane 🚀" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="eFa-ac-ERD">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                    </button>
+                    <popUpButton horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ZV5-c8-eUx">
+                        <rect key="frame" x="116" y="122" width="73" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Item 2" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="ewz-Lv-nMr" id="ScP-bI-cLA">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -66,24 +74,27 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bAN-WQ-4rp">
-                        <rect key="frame" x="124" y="40" width="142" height="32"/>
-                        <buttonCell key="cell" type="push" title="Run Fastlane 🚀" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="eFa-ac-ERD">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K50-mI-bJ1">
+                        <rect key="frame" x="206" y="124" width="164" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="select env (optional)" drawsBackground="YES" id="VKi-39-ET0">
                             <font key="font" metaFont="system"/>
-                        </buttonCell>
-                    </button>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Qvb-zg-fdH" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="6lh-al-nDJ"/>
-                    <constraint firstAttribute="trailing" secondItem="ZV5-c8-eUx" secondAttribute="trailing" constant="20" id="AsN-e6-Ose"/>
                     <constraint firstItem="bAN-WQ-4rp" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="FUU-V2-ISW"/>
                     <constraint firstItem="ZV5-c8-eUx" firstAttribute="leading" secondItem="Qvb-zg-fdH" secondAttribute="trailing" constant="30" id="KYO-c9-21b"/>
-                    <constraint firstItem="alp-tC-dMr" firstAttribute="trailing" secondItem="ZV5-c8-eUx" secondAttribute="trailing" id="LOc-IM-Gv7"/>
                     <constraint firstItem="bAN-WQ-4rp" firstAttribute="top" secondItem="alp-tC-dMr" secondAttribute="bottom" constant="20" id="MS7-cO-edb"/>
                     <constraint firstItem="alp-tC-dMr" firstAttribute="top" secondItem="ZV5-c8-eUx" secondAttribute="bottom" constant="20" id="PhR-Z6-Bz5"/>
                     <constraint firstItem="Qvb-zg-fdH" firstAttribute="centerY" secondItem="se5-gp-TjO" secondAttribute="centerY" id="Plq-9p-cHz"/>
                     <constraint firstItem="alp-tC-dMr" firstAttribute="leading" secondItem="ZV5-c8-eUx" secondAttribute="leading" id="fcd-t9-Fc7"/>
+                    <constraint firstAttribute="trailing" secondItem="alp-tC-dMr" secondAttribute="trailing" constant="20" id="gIp-Uh-EwU"/>
+                    <constraint firstAttribute="trailing" secondItem="K50-mI-bJ1" secondAttribute="trailing" constant="20" id="gmz-LV-Tkh"/>
+                    <constraint firstItem="K50-mI-bJ1" firstAttribute="centerY" secondItem="ZV5-c8-eUx" secondAttribute="centerY" id="pwr-4f-yKE"/>
+                    <constraint firstItem="K50-mI-bJ1" firstAttribute="leading" secondItem="ZV5-c8-eUx" secondAttribute="trailing" constant="20" id="umV-88-UcJ"/>
                     <constraint firstItem="ZV5-c8-eUx" firstAttribute="centerY" secondItem="Qvb-zg-fdH" secondAttribute="centerY" id="vDo-2d-GGx"/>
                 </constraints>
             </view>
