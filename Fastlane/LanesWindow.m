@@ -15,6 +15,7 @@
 
 @property (nonatomic, weak) IBOutlet NSPopUpButton* popUpButton1;
 @property (nonatomic, weak) IBOutlet NSPopUpButton* popUpButton2;
+@property (nonatomic, weak) IBOutlet NSTextField* laneDescTextField;
 @property (nonatomic, weak) IBOutlet NSButton* fastlaneButton;
 
 @end
@@ -69,9 +70,19 @@
         NSLog(@"%@", lane);
         [self.popUpButton2 addItemWithTitle:lane];
     }
+    
+    [self popup2Changed:self.popUpButton2];
 }
 
 - (IBAction)popup2Changed:(id)sender {
+    NSString* selectedPlatform = self.popUpButton1.titleOfSelectedItem;
+    NSDictionary* lanes = _lanesData[selectedPlatform];
+    for (id lane in lanes.allKeys) {
+        if (lane == self.popUpButton2.titleOfSelectedItem) {
+            self.laneDescTextField.stringValue = lanes[lane][@"description"];
+            return;
+        }
+    }
 }
 
 @end
