@@ -292,7 +292,6 @@
 		};
 		692C86641C761FDC00012B4B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 63723B60D83EE8D7D65B33F9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
@@ -308,7 +307,6 @@
 		};
 		692C86651C761FDC00012B4B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57D412E5A9A5A8E78FA226C9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
