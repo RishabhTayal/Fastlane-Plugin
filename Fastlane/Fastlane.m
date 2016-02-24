@@ -61,7 +61,9 @@
         
         NSMenuItem* runFastlane = [[NSMenuItem alloc] initWithTitle:@"Run Fastlane 🚀" action:@selector(runFastlane) keyEquivalent:@""];
         runFastlane.target = self;
-
+        runFastlane.keyEquivalentModifierMask = NSControlKeyMask | NSAlternateKeyMask | NSCommandKeyMask;
+        runFastlane.keyEquivalent = @"f";
+        
         [_fastlaneMenuItem.submenu addItem:runFastlane];
         
         [_fastlaneMenuItem.submenu addItem:[NSMenuItem separatorItem]];
