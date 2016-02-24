@@ -140,23 +140,18 @@
 }
 
 -(void)setupFastlane {
-    FLShellRunner* runner = [[FLShellRunner alloc] init];
+    FLShellRunner* runner = [FLShellRunner new];
     
-    [runner runScriptPath:[FLProject projectForKeyWindow].fastlanePath arguments:@[@"init"] withDirectoryPath:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSData *data) {
-        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        [runner addUserInput:@"y"];
+    NSArray *apps = [[NSWorkspace sharedWorkspace] runningApplications];
+    for (NSRunningApplication *app in apps) {
+        if([app.bundleIdentifier.lowercaseString isEqualToString:@"com.apple.terminal"]) {
+            [app activateWithOptions:NSApplicationActivateAllWindows|NSApplicationActivateIgnoringOtherApps];
+            break;
+        }
+    }
+    
+    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[@"-e", @"tell app \"Terminal\" to do script \"fastlane init\""] withDirectoryPath:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSData *data) {
     }];
-    
-    //    NSArray *apps = [[NSWorkspace sharedWorkspace] runningApplications];
-    //    for (NSRunningApplication *app in apps) {
-    //        if([app.bundleIdentifier.lowercaseString isEqualToString:@"com.apple.terminal"]) {
-    //            [app activateWithOptions:NSApplicationActivateAllWindows|NSApplicationActivateIgnoringOtherApps];
-    //            break;
-    //        }
-    //    }
-    //    
-    //    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[@"-e", @"tell app \"Terminal\" to do script \"fastlane init\""] completion:^(NSData *data) {
-    //    }];
 }
 
 - (void)dealloc {
