@@ -45,8 +45,6 @@
     //removeObserver
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSApplicationDidFinishLaunchingNotification object:nil];
     
-    //    [self setFastlanePath];
-    
     // Create menu items, initialize UI, etc.
     NSMenuItem *topMenuItem = [[NSApp mainMenu] itemWithTitle:@"Product"];
     if (topMenuItem) {
@@ -63,8 +61,7 @@
         
         NSMenuItem* runFastlane = [[NSMenuItem alloc] initWithTitle:@"Run Fastlane 🚀" action:@selector(runFastlane) keyEquivalent:@""];
         runFastlane.target = self;
-        //        runFastlane.submenu = [[NSMenu alloc] initWithTitle:@"Run Fastlane 🚀"];
-        [self addLanesOptionToMenu:runFastlane];
+
         [_fastlaneMenuItem.submenu addItem:runFastlane];
         
         [_fastlaneMenuItem.submenu addItem:[NSMenuItem separatorItem]];
@@ -84,11 +81,7 @@
     NSString* fastfilePath = project.fastfilePath;
     
     if (![project hasFastfile]) {
-        NSError* error = nil;
-        //        [[NSFileManager defaultManager] copyItemAtPath:[self.bundle pathForResource:@"DefaultPodfile" ofType:@""] toPath:fastfilePath error:&error];
-        //        if (error) {
-        //            [[NSAlert alertWithError:error] runModal];
-        //        }
+        return;
     }
     
     [[[NSApplication sharedApplication] delegate] application:[NSApplication sharedApplication]
@@ -111,17 +104,7 @@
 //    return true;
 //}
 
--(void)addLanesOptionToMenu:(NSMenuItem*)menu {
-    //    [FLShellRunner runShellCommand:[project fastlanePath] withArgs:@[@"lanes"] directory:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSTask *t) {
-    //        NSLog(@"%@", t.standardOutput);
-    //    }];
-}
-
 - (void)runFastlane {
-    //    [FLShellRunner runShellCommand: [[FLProject projectForKeyWindow] fastlanePath] withArgs:@[@"deploy"] directory:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSTask *t) {
-    //        NSLog(@"%@", t);
-    //    }];
-    
     FLShellRunner* shellRunner = [[FLShellRunner alloc] init];
     NSString* path = [NSString stringWithFormat:@"%@/Desktop/Personal/fastlane/bin/fastlane", NSHomeDirectory()];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
