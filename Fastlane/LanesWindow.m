@@ -61,7 +61,7 @@
     
     NSString* script = [NSString stringWithFormat:@"tell app \"Terminal\" \n do script activate \n delay 1 \n do script \"cd %@\" in window 1 \n do script \"fastlane %@ %@", _workspacePath,self.popUpButton1.titleOfSelectedItem, self.popUpButton2.titleOfSelectedItem];
     
-    if (self.popUpButton3.stringValue.length > 0) {
+    if (self.popUpButton3.titleOfSelectedItem.length > 0) {
         script = [script stringByAppendingString:[NSString stringWithFormat:@" --env %@", self.popUpButton3.titleOfSelectedItem]];
     }
     
