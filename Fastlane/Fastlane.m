@@ -57,13 +57,14 @@
         
         self.addEditFastlaneMenuItem = [[NSMenuItem alloc] initWithTitle:@"Add/Edit Fastfile" action:@selector(editFastfile) keyEquivalent:@""];
         [self.addEditFastlaneMenuItem setTarget:self];
+        self.addEditFastlaneMenuItem.keyEquivalentModifierMask = NSControlKeyMask | NSAlternateKeyMask | NSCommandKeyMask;
+        self.addEditFastlaneMenuItem.keyEquivalent = @"e";
         [_fastlaneMenuItem.submenu addItem:self.addEditFastlaneMenuItem];
         
         NSMenuItem* runFastlane = [[NSMenuItem alloc] initWithTitle:@"Run Fastlane 🚀" action:@selector(runFastlane) keyEquivalent:@""];
         runFastlane.target = self;
         runFastlane.keyEquivalentModifierMask = NSControlKeyMask | NSAlternateKeyMask | NSCommandKeyMask;
         runFastlane.keyEquivalent = @"f";
-        
         [_fastlaneMenuItem.submenu addItem:runFastlane];
         
         [_fastlaneMenuItem.submenu addItem:[NSMenuItem separatorItem]];
