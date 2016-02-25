@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1509" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="LanesWindow">
             <connections>
                 <outlet property="fastlaneButton" destination="bAN-WQ-4rp" id="5zj-Jz-Lvk"/>
+                <outlet property="laneDescTextField" destination="alp-tC-dMr" id="fG0-k1-URA"/>
                 <outlet property="popUpButton1" destination="Qvb-zg-fdH" id="aNN-cc-imO"/>
                 <outlet property="popUpButton2" destination="ZV5-c8-eUx" id="45X-dV-Jwp"/>
+                <outlet property="popUpButton3" destination="NTm-b1-VkB" id="Ul6-O4-wgg"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -17,14 +19,14 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+            <rect key="contentRect" x="196" y="240" width="390" height="270"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                <rect key="frame" x="0.0" y="0.0" width="390" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qvb-zg-fdH">
-                        <rect key="frame" x="204" y="142" width="73" height="26"/>
+                    <popUpButton horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qvb-zg-fdH">
+                        <rect key="frame" x="18" y="122" width="73" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Item 3" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="WNI-cX-mGm" id="yTu-db-AGA">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -41,14 +43,14 @@
                         </connections>
                     </popUpButton>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bAN-WQ-4rp">
-                        <rect key="frame" x="169" y="55" width="142" height="32"/>
+                        <rect key="frame" x="124" y="40" width="142" height="32"/>
                         <buttonCell key="cell" type="push" title="Run Fastlane 🚀" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="eFa-ac-ERD">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
-                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZV5-c8-eUx">
-                        <rect key="frame" x="204" y="100" width="73" height="26"/>
+                    <popUpButton horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ZV5-c8-eUx">
+                        <rect key="frame" x="116" y="122" width="169" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Item 2" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="ewz-Lv-nMr" id="ScP-bI-cLA">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -64,19 +66,48 @@
                             <action selector="popup2Changed:" target="-2" id="swH-lw-jYd"/>
                         </connections>
                     </popUpButton>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="alp-tC-dMr">
+                        <rect key="frame" x="116" y="88" width="256" height="17"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Multiline Label" id="o1p-mI-jhU">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NTm-b1-VkB">
+                        <rect key="frame" x="300" y="122" width="73" height="26"/>
+                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="tZA-FL-g5t" id="VVh-cJ-Vau">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="1Ky-Br-3gD">
+                                <items>
+                                    <menuItem title="Item 1" state="on" id="tZA-FL-g5t"/>
+                                    <menuItem title="Item 2" id="HcQ-rW-6g2"/>
+                                    <menuItem title="Item 3" id="C8v-nx-ipw"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                    </popUpButton>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ZV5-c8-eUx" firstAttribute="top" secondItem="Qvb-zg-fdH" secondAttribute="bottom" constant="21" id="N6b-tL-tWx"/>
-                    <constraint firstItem="Qvb-zg-fdH" firstAttribute="centerY" secondItem="se5-gp-TjO" secondAttribute="centerY" constant="-20" id="Plq-9p-cHz"/>
-                    <constraint firstItem="Qvb-zg-fdH" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="S9Y-Kn-PGX"/>
-                    <constraint firstItem="bAN-WQ-4rp" firstAttribute="top" secondItem="ZV5-c8-eUx" secondAttribute="bottom" constant="20" id="aNo-uS-gxM"/>
-                    <constraint firstItem="ZV5-c8-eUx" firstAttribute="centerX" secondItem="Qvb-zg-fdH" secondAttribute="centerX" id="b4i-G2-P3E"/>
-                    <constraint firstItem="bAN-WQ-4rp" firstAttribute="centerX" secondItem="Qvb-zg-fdH" secondAttribute="centerX" id="g1b-yf-3q1"/>
+                    <constraint firstItem="NTm-b1-VkB" firstAttribute="leading" secondItem="ZV5-c8-eUx" secondAttribute="trailing" constant="20" id="2JU-nM-3Iw"/>
+                    <constraint firstItem="Qvb-zg-fdH" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="6lh-al-nDJ"/>
+                    <constraint firstItem="bAN-WQ-4rp" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="FUU-V2-ISW"/>
+                    <constraint firstItem="ZV5-c8-eUx" firstAttribute="leading" secondItem="Qvb-zg-fdH" secondAttribute="trailing" constant="30" id="KYO-c9-21b"/>
+                    <constraint firstItem="bAN-WQ-4rp" firstAttribute="top" secondItem="alp-tC-dMr" secondAttribute="bottom" constant="20" id="MS7-cO-edb"/>
+                    <constraint firstItem="alp-tC-dMr" firstAttribute="top" secondItem="ZV5-c8-eUx" secondAttribute="bottom" constant="20" id="PhR-Z6-Bz5"/>
+                    <constraint firstItem="Qvb-zg-fdH" firstAttribute="centerY" secondItem="se5-gp-TjO" secondAttribute="centerY" id="Plq-9p-cHz"/>
+                    <constraint firstAttribute="trailing" secondItem="NTm-b1-VkB" secondAttribute="trailing" constant="20" id="aWW-Dj-YWj"/>
+                    <constraint firstItem="NTm-b1-VkB" firstAttribute="centerY" secondItem="ZV5-c8-eUx" secondAttribute="centerY" id="ewp-gR-qEG"/>
+                    <constraint firstItem="alp-tC-dMr" firstAttribute="leading" secondItem="ZV5-c8-eUx" secondAttribute="leading" id="fcd-t9-Fc7"/>
+                    <constraint firstAttribute="trailing" secondItem="alp-tC-dMr" secondAttribute="trailing" constant="20" id="gIp-Uh-EwU"/>
+                    <constraint firstItem="ZV5-c8-eUx" firstAttribute="centerY" secondItem="Qvb-zg-fdH" secondAttribute="centerY" id="vDo-2d-GGx"/>
                 </constraints>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
+            <point key="canvasLocation" x="156" y="278"/>
         </window>
     </objects>
 </document>

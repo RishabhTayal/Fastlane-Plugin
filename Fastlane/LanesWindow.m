@@ -15,6 +15,8 @@
 
 @property (nonatomic, weak) IBOutlet NSPopUpButton* popUpButton1;
 @property (nonatomic, weak) IBOutlet NSPopUpButton* popUpButton2;
+@property (nonatomic, weak) IBOutlet NSPopUpButton* popUpButton3;
+@property (nonatomic, weak) IBOutlet NSTextField* laneDescTextField;
 @property (nonatomic, weak) IBOutlet NSButton* fastlaneButton;
 
 @end
@@ -44,6 +46,8 @@
     
     self.fastlaneButton.target = self;
     [self.fastlaneButton setAction:@selector(runFastlane:)];
+    
+    [self loadEnvironments];
 }
 
 - (IBAction)runFastlane:(NSButton *)sender {
@@ -55,8 +59,16 @@
         }
     }
     
+    NSString* script = [NSString stringWithFormat:@"tell app \"Terminal\" \n do script activate \n delay 1 \n do script \"cd %@\" in window 1 \n do script \"fastlane %@ %@", _workspacePath,self.popUpButton1.titleOfSelectedItem, self.popUpButton2.titleOfSelectedItem];
+    
+    if (self.popUpButton3.titleOfSelectedItem.length > 0) {
+        script = [script stringByAppendingString:[NSString stringWithFormat:@" --env %@", self.popUpButton3.titleOfSelectedItem]];
+    }
+    
+    script = [script stringByAppendingString:@"\" in window 1 \n end tell"];
+    
     FLShellRunner* runner = [[FLShellRunner alloc] init];
-    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[@"-e", [NSString stringWithFormat:@"tell app \"Terminal\" \n do script activate \n delay 1 \n do script \"cd %@\" in window 1 \n do script \"fastlane %@ %@\" in window 1 \n end tell", _workspacePath,self.popUpButton1.titleOfSelectedItem, self.popUpButton2.titleOfSelectedItem]] withDirectoryPath:_workspacePath completion:^(NSData *data) {
+    [runner runScriptPath:@"/usr/bin/osascript" arguments:@[@"-e", script] withDirectoryPath:_workspacePath completion:^(NSData *data) {
     }];
 }
 
@@ -69,9 +81,34 @@
         NSLog(@"%@", lane);
         [self.popUpButton2 addItemWithTitle:lane];
     }
+    
+    [self popup2Changed:self.popUpButton2];
 }
 
 - (IBAction)popup2Changed:(id)sender {
+    NSString* selectedPlatform = self.popUpButton1.titleOfSelectedItem;
+    NSDictionary* lanes = _lanesData[selectedPlatform];
+    for (id lane in lanes.allKeys) {
+        if (lane == self.popUpButton2.titleOfSelectedItem) {
+            self.laneDescTextField.stringValue = lanes[lane][@"description"];
+            return;
+        }
+    }
+}
+
+-(void)loadEnvironments {
+    NSArray* dirFiles = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/fastlane", _workspacePath] error:nil];
+    NSLog(@"%@", dirFiles);
+    NSArray* envFiles = [dirFiles filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self BEGINSWITH %@", @".env"]];
+    NSLog(@"%@", envFiles);
+    NSMutableArray* enviornments = [NSMutableArray new];
+    for (NSString* env in envFiles) {
+        NSRange range = [env rangeOfString:@".env"];
+        [enviornments addObject:[env stringByReplacingCharactersInRange:range withString:@""]];
+    }
+    
+    [self.popUpButton3 removeAllItems];
+    [self.popUpButton3 addItemsWithTitles:enviornments];
 }
 
 @end
