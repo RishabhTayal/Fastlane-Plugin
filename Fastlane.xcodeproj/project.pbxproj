@@ -14,8 +14,7 @@
 		692C86531C761FDC00012B4B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692C86521C761FDC00012B4B /* AppKit.framework */; };
 		692C86551C761FDC00012B4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692C86541C761FDC00012B4B /* Foundation.framework */; };
 		692C86591C761FDC00012B4B /* Fastlane.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 692C86581C761FDC00012B4B /* Fastlane.xcscheme */; };
-		692C865C1C761FDC00012B4B /* Fastlane.m in Sources */ = {isa = PBXBuildFile; fileRef = 692C865B1C761FDC00012B4B /* Fastlane.m */; };
-		692C865F1C761FDC00012B4B /* NSObject_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 692C865E1C761FDC00012B4B /* NSObject_Extension.m */; };
+		692C865C1C761FDC00012B4B /* Fastlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692C865B1C761FDC00012B4B /* Fastlane.swift */; };
 		69C7EF8D1C7BA2E500566F7D /* LanesWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C7EF8B1C7BA2E500566F7D /* LanesWindow.m */; };
 		69C7EF8E1C7BA2E500566F7D /* LanesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69C7EF8C1C7BA2E500566F7D /* LanesWindow.xib */; };
 /* End PBXBuildFile section */
@@ -36,11 +35,9 @@
 		692C86521C761FDC00012B4B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		692C86541C761FDC00012B4B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		692C86581C761FDC00012B4B /* Fastlane.xcscheme */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Fastlane.xcscheme; path = Fastlane.xcodeproj/xcshareddata/xcschemes/Fastlane.xcscheme; sourceTree = SOURCE_ROOT; };
-		692C865A1C761FDC00012B4B /* Fastlane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fastlane.h; sourceTree = "<group>"; };
-		692C865B1C761FDC00012B4B /* Fastlane.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Fastlane.m; sourceTree = "<group>"; };
-		692C865D1C761FDC00012B4B /* NSObject_Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSObject_Extension.h; sourceTree = "<group>"; };
-		692C865E1C761FDC00012B4B /* NSObject_Extension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSObject_Extension.m; sourceTree = "<group>"; };
+		692C865B1C761FDC00012B4B /* Fastlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fastlane.swift; sourceTree = "<group>"; };
 		692C86601C761FDC00012B4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		696F072D1C7F8C7F006FBD34 /* Fastlane-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fastlane-Bridging-Header.h"; sourceTree = "<group>"; };
 		69C7EF8A1C7BA2E500566F7D /* LanesWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanesWindow.h; sourceTree = "<group>"; };
 		69C7EF8B1C7BA2E500566F7D /* LanesWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanesWindow.m; sourceTree = "<group>"; };
 		69C7EF8C1C7BA2E500566F7D /* LanesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LanesWindow.xib; sourceTree = "<group>"; };
@@ -106,13 +103,10 @@
 			isa = PBXGroup;
 			children = (
 				691AB4571C767CE9001D45F6 /* Helpers */,
-				692C865A1C761FDC00012B4B /* Fastlane.h */,
-				692C865B1C761FDC00012B4B /* Fastlane.m */,
+				692C865B1C761FDC00012B4B /* Fastlane.swift */,
 				69C7EF8A1C7BA2E500566F7D /* LanesWindow.h */,
 				69C7EF8B1C7BA2E500566F7D /* LanesWindow.m */,
 				69C7EF8C1C7BA2E500566F7D /* LanesWindow.xib */,
-				692C865D1C761FDC00012B4B /* NSObject_Extension.h */,
-				692C865E1C761FDC00012B4B /* NSObject_Extension.m */,
 				692C86571C761FDC00012B4B /* Supporting Files */,
 			);
 			path = Fastlane;
@@ -121,6 +115,7 @@
 		692C86571C761FDC00012B4B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				696F072D1C7F8C7F006FBD34 /* Fastlane-Bridging-Header.h */,
 				692C86601C761FDC00012B4B /* Info.plist */,
 				692C86581C761FDC00012B4B /* Fastlane.xcscheme */,
 			);
@@ -205,9 +200,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				691AB4651C767CE9001D45F6 /* FLWorkspaceManager.m in Sources */,
-				692C865C1C761FDC00012B4B /* Fastlane.m in Sources */,
+				692C865C1C761FDC00012B4B /* Fastlane.swift in Sources */,
 				691AB4661C767CE9001D45F6 /* FLXCodeConsole.m in Sources */,
-				692C865F1C761FDC00012B4B /* NSObject_Extension.m in Sources */,
 				691AB4641C767CE9001D45F6 /* FLShellRunner.m in Sources */,
 				691AB4621C767CE9001D45F6 /* FLProject.m in Sources */,
 				69C7EF8D1C7BA2E500566F7D /* LanesWindow.m in Sources */,
@@ -293,14 +287,18 @@
 		692C86641C761FDC00012B4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
 				INFOPLIST_FILE = Fastlane/Info.plist;
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rtayal.Fastlane;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Fastlane/Fastlane-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Debug;
@@ -308,14 +306,17 @@
 		692C86651C761FDC00012B4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(HOME)";
 				INFOPLIST_FILE = Fastlane/Info.plist;
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rtayal.Fastlane;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Fastlane/Fastlane-Bridging-Header.h";
 				WRAPPER_EXTENSION = xcplugin;
 			};
 			name = Release;
