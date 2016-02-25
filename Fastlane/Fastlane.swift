@@ -105,7 +105,7 @@ class Fastlane: NSObject {
                 let lanesJson = try NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: NSJSONReadingOptions.AllowFragments)
                 dispatch_async(dispatch_get_main_queue(), {() -> Void in
                     self.lanesWindow = LanesWindow()
-                    self.lanesWindow.lanesData = lanesJson as! [NSObject : AnyObject]
+                    self.lanesWindow.lanesData = lanesJson as! Dictionary<String, Dictionary<String, Dictionary<String, AnyObject>>>
                     self.lanesWindow.workspacePath = FLWorkspaceManager.currentWorkspaceDirectoryPath()
                     NSApp.keyWindow!.beginSheet(self.lanesWindow.window!, completionHandler: nil)
                 })

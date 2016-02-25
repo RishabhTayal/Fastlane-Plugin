@@ -15,7 +15,7 @@
 		692C86551C761FDC00012B4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692C86541C761FDC00012B4B /* Foundation.framework */; };
 		692C86591C761FDC00012B4B /* Fastlane.xcscheme in Resources */ = {isa = PBXBuildFile; fileRef = 692C86581C761FDC00012B4B /* Fastlane.xcscheme */; };
 		692C865C1C761FDC00012B4B /* Fastlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692C865B1C761FDC00012B4B /* Fastlane.swift */; };
-		69C7EF8D1C7BA2E500566F7D /* LanesWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C7EF8B1C7BA2E500566F7D /* LanesWindow.m */; };
+		69C7EF8D1C7BA2E500566F7D /* LanesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C7EF8B1C7BA2E500566F7D /* LanesWindow.swift */; };
 		69C7EF8E1C7BA2E500566F7D /* LanesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69C7EF8C1C7BA2E500566F7D /* LanesWindow.xib */; };
 /* End PBXBuildFile section */
 
@@ -38,8 +38,7 @@
 		692C865B1C761FDC00012B4B /* Fastlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fastlane.swift; sourceTree = "<group>"; };
 		692C86601C761FDC00012B4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		696F072D1C7F8C7F006FBD34 /* Fastlane-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fastlane-Bridging-Header.h"; sourceTree = "<group>"; };
-		69C7EF8A1C7BA2E500566F7D /* LanesWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanesWindow.h; sourceTree = "<group>"; };
-		69C7EF8B1C7BA2E500566F7D /* LanesWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanesWindow.m; sourceTree = "<group>"; };
+		69C7EF8B1C7BA2E500566F7D /* LanesWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanesWindow.swift; sourceTree = "<group>"; };
 		69C7EF8C1C7BA2E500566F7D /* LanesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LanesWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,8 +103,7 @@
 			children = (
 				691AB4571C767CE9001D45F6 /* Helpers */,
 				692C865B1C761FDC00012B4B /* Fastlane.swift */,
-				69C7EF8A1C7BA2E500566F7D /* LanesWindow.h */,
-				69C7EF8B1C7BA2E500566F7D /* LanesWindow.m */,
+				69C7EF8B1C7BA2E500566F7D /* LanesWindow.swift */,
 				69C7EF8C1C7BA2E500566F7D /* LanesWindow.xib */,
 				692C86571C761FDC00012B4B /* Supporting Files */,
 			);
@@ -204,7 +202,7 @@
 				691AB4661C767CE9001D45F6 /* FLXCodeConsole.m in Sources */,
 				691AB4641C767CE9001D45F6 /* FLShellRunner.m in Sources */,
 				691AB4621C767CE9001D45F6 /* FLProject.m in Sources */,
-				69C7EF8D1C7BA2E500566F7D /* LanesWindow.m in Sources */,
+				69C7EF8D1C7BA2E500566F7D /* LanesWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
