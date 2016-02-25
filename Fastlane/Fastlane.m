@@ -18,6 +18,7 @@
 
 @property (nonatomic, strong) NSMenuItem* fastlaneMenuItem;
 @property (nonatomic, strong) NSMenuItem* addEditFastlaneMenuItem;
+@property (nonatomic, strong) NSMenuItem* runFastlaneMenuItem;
 
 @property (nonatomic, strong) LanesWindow* lanesWindow;
 
@@ -61,11 +62,11 @@
         self.addEditFastlaneMenuItem.keyEquivalent = @"e";
         [_fastlaneMenuItem.submenu addItem:self.addEditFastlaneMenuItem];
         
-        NSMenuItem* runFastlane = [[NSMenuItem alloc] initWithTitle:@"Run Fastlane 🚀" action:@selector(runFastlane) keyEquivalent:@""];
-        runFastlane.target = self;
-        runFastlane.keyEquivalentModifierMask = NSControlKeyMask | NSAlternateKeyMask | NSCommandKeyMask;
-        runFastlane.keyEquivalent = @"f";
-        [_fastlaneMenuItem.submenu addItem:runFastlane];
+        self.runFastlaneMenuItem = [[NSMenuItem alloc] initWithTitle:@"Run Fastlane 🚀" action:@selector(runFastlane) keyEquivalent:@""];
+        self.runFastlaneMenuItem.target = self;
+        self.runFastlaneMenuItem.keyEquivalentModifierMask = NSControlKeyMask | NSAlternateKeyMask | NSCommandKeyMask;
+        self.runFastlaneMenuItem.keyEquivalent = @"f";
+        [_fastlaneMenuItem.submenu addItem:self.runFastlaneMenuItem];
         
         [_fastlaneMenuItem.submenu addItem:[NSMenuItem separatorItem]];
         
@@ -91,27 +92,24 @@
                                                      openFile:fastfilePath];
 }
 
-//-(BOOL)validateMenuItem:(NSMenuItem *)menuItem {
-//    NSLog(@"validating");
-//    if ([menuItem isEqual:self.addEditFastlaneMenuItem]) {
-//        NSLog(@"%@", [FLWorkspaceManager currentWorkspaceDirectoryPath]);
-//        FLProject* project = [[FLProject alloc] init];
-//        [FLShellRunner runShellCommand:[project fastlanePath] withArgs:@[@"lanes"] directory:[FLWorkspaceManager currentWorkspaceDirectoryPath] completion:^(NSTask *t) {
-//            NSLog(@"%@", [t standardOutput]);
-//            NSPipe* outPipe = t.standardOutput;
-//            NSFileHandle* read = [outPipe fileHandleForReading];
-//            NSData* dataRead = read.readDataToEndOfFile;
-//            NSLog(@"%@", [[NSString alloc] initWithData:dataRead encoding:NSUTF8StringEncoding]);
-//        }];
-//    }
-//    return true;
-//}
+-(BOOL)validateMenuItem:(NSMenuItem *)menuItem {
+    NSLog(@"validating");
+    if ([menuItem isEqual:self.addEditFastlaneMenuItem] || [menuItem isEqual:self.runFastlaneMenuItem]) {
+        NSLog(@"%@", [FLWorkspaceManager currentWorkspaceDirectoryPath]);
+        if ([FLProject projectForKeyWindow].hasFastfile) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    return true;
+}
 
 - (void)runFastlane {
     FLShellRunner* shellRunner = [[FLShellRunner alloc] init];
-    NSString* path = [NSString stringWithFormat:@"%@/Desktop/Personal/fastlane/bin/fastlane", NSHomeDirectory()];
+//    NSString* path = [NSString stringWithFormat:@"%@/Desktop/Personal/fastlane/bin/fastlane", NSHomeDirectory()];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSData* data = [shellRunner runScriptPath:path arguments:@[@"lanes", @"--json"] withDirectoryPath:[FLWorkspaceManager currentWorkspaceDirectoryPath]];
+        NSData* data = [shellRunner runScriptPath:[FLProject projectForKeyWindow].fastlanePath arguments:@[@"lanes", @"--json"] withDirectoryPath:[FLWorkspaceManager currentWorkspaceDirectoryPath]];
         NSString* string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSString* jsonString = [string substringWithRange:NSMakeRange([string rangeOfString:@"{"].location, string.length - [string rangeOfString:@"{"].location)];
         NSLog(@"JSON: %@", [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil]);
