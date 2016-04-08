@@ -100,7 +100,6 @@ class Fastlane: NSObject {
             })
             
             let jsonString = string.substringFromIndex((string.rangeOfString("{")?.startIndex)!)
-            //            var jsonString: String = string.substringWithRange(NSMakeRange(string.rangeOfString("{")!.location, string.characters.count - string.rangeOfString("{")!.location))
             do {
                 let lanesJson = try NSJSONSerialization.JSONObjectWithData(jsonString.dataUsingEncoding(NSUTF8StringEncoding)!, options: NSJSONReadingOptions.AllowFragments)
                 dispatch_async(dispatch_get_main_queue(), {() -> Void in
@@ -136,7 +135,6 @@ class Fastlane: NSObject {
 extension NSObject {
     class func pluginDidLoad(plugin: NSBundle)
     {
-        //        static dispatch_once_t onceToken;
         let currentApplicationName = NSBundle.mainBundle().infoDictionary!["CFBundleName"]
         if ((currentApplicationName?.isEqual("Xcode")) != nil) {
             Fastlane.sharedPlugin = Fastlane(plugin: plugin)

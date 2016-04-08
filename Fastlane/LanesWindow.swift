@@ -86,7 +86,7 @@ class LanesWindow: NSWindowController {
             NSLog("%@", envFiles)
             var enviornments: [String] = []
             for env: String in envFiles {
-                let range = env.rangeOfString(".env")
+                let range = env.rangeOfString(".env.")
                 enviornments.append(env.stringByReplacingCharactersInRange(range!, withString: ""))
             }
             self.popUpButton3.removeAllItems()
