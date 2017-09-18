@@ -1,13 +1,13 @@
 # Fastlane-Plugin for Xcode
 
-##Features
+## Features
 - Run `fastlane` command with one click.
 - Add your Fastfile in xcode.
 - Setup Fastlane.
 
 ![Menu](https://raw.githubusercontent.com/RishabhTayal/Fastlane-Plugin/master/screenshot.png)
 
-##Install
+## Install
 Install via [Alcatraz](http://alcatraz.io/)
 
 OR
@@ -24,7 +24,7 @@ Install an Xcode plugin for the current user
 install_xcode_plugin(url: 'https://github.com/RishabhTayal/Fastlane-Plugin/releases/download/1.2/Fastlane.xcplugin.zip')
 ```
 
-##Uninstall
+## Uninstall
 
 Uninstall via [Alcatraz](http://alcatraz.io/)
 
@@ -32,7 +32,7 @@ OR
 
 Run `rm -r ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Fastlane-Plugin.xcplugin/`
 
-##Author
+## Author
 Rishabh Tayal: [@Rishabh_Tayal](http://twitter.com/rishabh_tayal)
 
 Thanks: Felix Krause [@KrauseFx](http://twitter.com/krausefx)
